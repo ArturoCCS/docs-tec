@@ -1,0 +1,54 @@
+{
+  "kind": "categoryToolbox",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "Estructura CSS",
+      "colour": "120",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "css_selector"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Colores y Texto",
+      "colour": "260",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "css_color"
+        },
+        {
+          "kind": "block",
+          "type": "css_background_color"
+        },
+        {
+          "kind": "block",
+          "type": "css_font_size"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Caja y Bordes",
+      "colour": "190",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "css_margin"
+        },
+        {
+          "kind": "block",
+          "type": "css_padding"
+        },
+        {
+          "kind": "block",
+          "type": "css_border"
+        }
+      ]
+    }
+  ]
+}

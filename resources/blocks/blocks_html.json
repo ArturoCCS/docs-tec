@@ -1,0 +1,155 @@
+[
+  {
+    "type": "html_doctype",
+    "message0": "<!DOCTYPE html>",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "0",
+    "tooltip": "Define que el documento es de tipo HTML5.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_root",
+    "message0": "<html> %1 %2 </html>",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "CONTENT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "15",
+    "tooltip": "La raíz de un documento HTML.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_head",
+    "message0": "<head> %1 %2 </head>",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "CONTENT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "15",
+    "tooltip": "Contiene los metadatos y enlaces del documento.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_title",
+    "message0": "<title> %1 </title>",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "TEXT",
+        "text": "Título de la página"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "40",
+    "tooltip": "Define el título que se ve en la pestaña del navegador.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_body",
+    "message0": "<body> %1 %2 </body>",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "CONTENT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "15",
+    "tooltip": "El contenedor de todo el contenido visible de la página.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_heading",
+    "message0": "< %1 > %2 </ %3 >",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "TAG",
+        "options": [
+          ["h1", "h1"],
+          ["h2", "h2"],
+          ["h3", "h3"],
+          ["h4", "h4"],
+          ["h5", "h5"],
+          ["h6", "h6"]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "TEXT",
+        "text": "Encabezado"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TAG_END",
+        "options": [
+          ["h1", "h1"],
+          ["h2", "h2"],
+          ["h3", "h3"],
+          ["h4", "h4"],
+          ["h5", "h5"],
+          ["h6", "h6"]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "120",
+    "tooltip": "Un encabezado o título de sección.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_paragraph",
+    "message0": "<p> %1 </p>",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "TEXT",
+        "text": "Este es un párrafo de ejemplo..."
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "120",
+    "tooltip": "Un párrafo de texto estándar.",
+    "helpUrl": ""
+  },
+  {
+    "type": "html_div",
+    "message0": "<div> %1 %2 </div>",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "CONTENT"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "120",
+    "tooltip": "Un contenedor genérico en bloque.",
+    "helpUrl": ""
+  }
+]
