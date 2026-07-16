@@ -1,3 +1,5 @@
+import * as Blockly from 'blockly';
+
 if (document.getElementById('blocklyDiv')) {
     
     const inicializarBlockly = async () => {
