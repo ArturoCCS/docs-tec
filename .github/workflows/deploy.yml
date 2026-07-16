@@ -1,0 +1,34 @@
+name: Deploy to Raspberry Pi (Testing)
+
+# El script SOLO se ejecutará cuando hagas 'push' o unas cambios a la rama 'testing'
+on:
+  push:
+    branches:
+      - testing
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias de JS y Compilar Assets (Vite)
+        run: |
+          npm ci
+          npm run build
+
+      - name: Desplegar código a la Raspberry Pi mediante SSH/Rsync
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.RASPBERRY_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.RASPBERRY_IP }}
+          REMOTE_USER: ${{ secrets.RASPBERRY_USER }}
+          TARGET: "/home/artk/proyectos/docs-tec"
+          EXCLUDE: "/node_modules/, /tests/, .env"
