@@ -1,6 +1,5 @@
 name: Deploy to Raspberry Pi (Testing)
 
-# El script SOLO se ejecutará cuando hagas 'push' o unas cambios a la rama 'testing'
 on:
   push:
     branches:
@@ -13,6 +12,13 @@ jobs:
     steps:
       - name: Descargar código del repositorio
         uses: actions/checkout@v4
+
+      - name: Conectar a Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ""
+          oauth-secret: ""
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
