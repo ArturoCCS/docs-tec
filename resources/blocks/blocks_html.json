@@ -151,5 +151,18 @@
     "colour": "120",
     "tooltip": "Un contenedor genérico en bloque.",
     "helpUrl": ""
-  }
+  },
+{
+  "type": "html_style",
+  "message0": "<style> %1 %2 </style>",
+  "args0": [
+    { "type": "input_dummy" },
+    { "type": "input_statement", "name": "CONTENT", "check": "CSS_RULE" }
+    
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "15",
+  "tooltip": "Contenedor de estilos CSS."
+}
 ]

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 97 45" xmlns="http://www.w3.org/2000/svg">
+    <g role="none" class="blockly_block_factory_preview_block blocklyBlock blocklyDraggable"
+        data-id="n66Zi:ODCMMH(hwA7V3m">
+        
+        <!-- Fondo del bloque -->
+        <path class="blocklyPath" id="blockly-1li" stroke="#ffffff" fill="#5b6da5"
+            aria-label="Begin stack, Blockly" role="figure" aria-roledescription="container" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 88.42338562011719  v 10  V 10  H 96.42338562011719  l -6,4  -3,0  -6,-4  h -7 a 8 8 0 0,0 -8,8  v 8 a 8 8 0 0,0 8,8  H 96.42338562011719  V 34  V 44  h -88.42338562011719 a 8 8 0 0,1 -8,-8 z" tabindex="-1"></path>
+        
+        <!-- Etiqueta de texto CON el atributo fill="#ffffff" añadido -->
+        <g role="none" class="blocklyLabelField" aria-hidden="true"
+            id="n66Zi:ODCMMH(hwA7V3m_field_blockly-1lk" transform="translate(10,15)">
+            <text class="blocklyText blocklyFieldText" fill="#ffffff" aria-hidden="true" dominant-baseline="central"
+                x="0" y="8.5">Blockly</text>
+        </g>
+        
+        <path id="n66Zi:ODCMMH(hwA7V3m_connection_blockly-1lj" class="blocklyHighlightedConnectionPath"
+            d=" m -7,0  h 7  l 6,4  3,0  6,-4  h 7 " transform="translate(81.42338562011719, 10)"
+            role="figure" aria-roledescription="statement position"></path>
+    </g>
+</svg>

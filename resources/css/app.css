@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "./styles/main.css";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,5 +12,6 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: all;
+}

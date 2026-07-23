@@ -16,6 +16,9 @@
     },
     "dependencies": {
         "@blockly/field-colour": "^13.1.0",
-        "blockly": "^13.1.1"
+        "@blockly/theme-dark": "^13.1.0",
+        "@blockly/theme-modern": "^13.1.0",
+        "blockly": "^13.1.1",
+        "theme-change": "^3.0.4"
     }
 }

@@ -1,20 +1,60 @@
 import * as Blockly from 'blockly';
+import DarkTheme from '@blockly/theme-dark';
+import ModernTheme from '@blockly/theme-modern';
 
 let workspace;
 let lenguajeActual = 'html';
 
-function inicializarEditor() {
-    if (!window.BlocklyData) {
-        console.error("BlocklyData no está disponible en window.");
-        return;
+function aplicarTema(esOscuro) {
+    const temaString = esOscuro ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', temaString);
+    localStorage.setItem('theme-preference', temaString);
+    if (workspace) {
+        workspace.setTheme(esOscuro ? DarkTheme : ModernTheme);
     }
+
+
+    const componenteEspecial = document.getElementById('html');
+
+    const componenteEspecial2 = document.getElementById('body');
+
+
+
+    if (temaString === 'light') {
+
+    console.log(temaString)
+        componenteEspecial.setAttribute('data-theme', 'dark');
+
+        componenteEspecial2.setAttribute('data-theme', 'light');
+    } else {
+        componenteEspecial.setAttribute('data-theme', 'light');
+
+        componenteEspecial2.setAttribute('data-theme', 'dark');
+    }
+
+}
+
+function inicializarToggleTema() {
+    const toggleTema = document.querySelector('.theme-controller');
+    if (!toggleTema) return;
+
+    const temaActual = document.documentElement.getAttribute('data-theme');
+    toggleTema.checked = (temaActual === 'dark');
+
+    toggleTema.removeEventListener('change', onToggleChange);
+    toggleTema.addEventListener('change', onToggleChange);
+}
+
+function onToggleChange(e) {
+    aplicarTema(e.target.checked);
+}
+
+function inicializarEditor() {
+    if (!window.BlocklyData) return;
 
     Object.keys(window.BlocklyData.bloques).forEach(categoria => {
         const bloques = window.BlocklyData.bloques[categoria];
-        if (bloques && bloques.length > 0) {
-            Blockly.common.defineBlocksWithJsonArray(bloques);
-            console.log(`¡Bloques de [${categoria.toUpperCase()}] registrados!`);
-        }
+        if (bloques && bloques.length > 0) Blockly.common.defineBlocksWithJsonArray(bloques);
     });
 
     workspace = Blockly.inject('blocklyDiv', {
@@ -24,85 +64,100 @@ function inicializarEditor() {
         scrollbars: true
     });
 
+    const esOscuro = document.documentElement.getAttribute('data-theme') === 'dark';
+    workspace.setTheme(esOscuro ? DarkTheme : ModernTheme);
+
     const toolbox = workspace.getToolbox();
     if (toolbox && toolbox.getFlyout()) {
         toolbox.getFlyout().autoClose = false;
-
-        const primeraCategoria = toolbox.getToolboxItems()[0];
-        if (primeraCategoria) {
-            toolbox.selectItemByPosition(0);
-        }
+        toolbox.selectItemByPosition(0);
     }
 
     Blockly.svgResize(workspace);
-    setTimeout(() => {
-        Blockly.svgResize(workspace);
-    }, 100);
-
+    setTimeout(() => Blockly.svgResize(workspace), 100);
     window.addEventListener('resize', () => Blockly.svgResize(workspace));
 
-    const btnVer = document.getElementById('btnVer');
-    if (btnVer) {
-        btnVer.addEventListener('click', () => {
-            const topBlocks = workspace.getTopBlocks(true);
-            let codigoGenerado = '';
 
-            if (lenguajeActual === 'html') {
-                topBlocks.forEach(block => {
-                    if (htmlGenerator.forBlock[block.type]) {
-                        codigoGenerado += htmlGenerator.blockToCode(block);
-                    }
-                });
-                console.log("%c=== HTML GENERADO ===", "color: #4CAF50; font-weight: bold;", codigoGenerado);
-                alert('Código HTML generado en consola.');
+    let debounceTimeout = null;
 
-            } else if (lenguajeActual === 'css') {
-                topBlocks.forEach(block => {
-                    if (cssGenerator.forBlock[block.type]) {
-                        codigoGenerado += cssGenerator.blockToCode(block);
-                    }
-                });
-                console.log("%c=== CSS GENERADO ===", "color: #2196F3; font-weight: bold;", codigoGenerado);
-                alert('Código CSS generado en consola.');
+    let timeoutGeneracion = null;
+
+    workspace.addChangeListener((event) => {
+        if (event.type === Blockly.Events.BLOCK_CREATE ||
+            event.type === Blockly.Events.BLOCK_CHANGE ||
+            event.type === Blockly.Events.BLOCK_DELETE) {
+
+            generarCodigoConRetardo();
+            return;
+        }
+
+        if (event.type === Blockly.Events.BLOCK_MOVE) {
+            const cambioDePadre = event.oldParentId !== event.newParentId;
+            const cambioDeHermano = event.oldNextBlockId !== event.newNextBlockId || event.oldPreviousBlockId !== event.newPreviousBlockId;
+
+            if (cambioDePadre || cambioDeHermano) {
+                generarCodigoConRetardo();
             }
-        });
+        }
+    });
+
+    function generarCodigoConRetardo() {
+        clearTimeout(timeoutGeneracion);
+
+        timeoutGeneracion = setTimeout(() => {
+            let codigoFinal = '';
+
+            const topBlocks = workspace.getTopBlocks(true);
+
+            topBlocks.forEach(block => {
+                if (htmlGenerator.forBlock[block.type]) {
+                    codigoFinal += htmlGenerator.blockToCode(block);
+                }
+            });
+
+            console.log(`\n========== CÓDIGO FINAL ==========\n`);
+            console.log(codigoFinal);
+            console.log("====================================\n");
+            let pene = document.getElementById('preview-iframe');
+            pene.srcdoc = codigoFinal;
+        }, 100);
+
     }
 }
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
+    inicializarToggleTema();
     inicializarEditor();
 } else {
-    document.addEventListener("DOMContentLoaded", inicializarEditor);
+    document.addEventListener("DOMContentLoaded", () => {
+        inicializarToggleTema();
+        inicializarEditor();
+    });
 }
+
+
+
 
 window.seleccionarLenguaje = function (nuevoLenguaje) {
     if (!workspace) return;
-
     const toolboxes = window.BlocklyData.toolboxes;
-
     if (toolboxes[nuevoLenguaje]) {
         workspace.updateToolbox(toolboxes[nuevoLenguaje]);
         lenguajeActual = nuevoLenguaje;
-        
         const toolbox = workspace.getToolbox();
         if (toolbox && toolbox.getFlyout()) {
             toolbox.getFlyout().autoClose = false;
             toolbox.selectItemByPosition(0);
         }
+        setTimeout(() => Blockly.svgResize(workspace), 50);
 
-        setTimeout(() => {
-            Blockly.svgResize(workspace);
-        }, 50);
-
-        const btnHtml = document.getElementById('btnHtml');
-        const btnCss = document.getElementById('btnCss');
-
-        if (nuevoLenguaje === 'html') {
-            btnHtml.className = 'btn btn-dark active';
-            btnCss.className = 'btn btn-outline-dark';
-        } else if (nuevoLenguaje === 'css') {
-            btnHtml.className = 'btn btn-outline-dark';
-            btnCss.className = 'btn btn-dark active';
-        }
+        document.getElementById('btnHtml').className = nuevoLenguaje === 'html' ? 'btn btn-dark active' : 'btn btn-outline-dark';
+        document.getElementById('btnCss').className = nuevoLenguaje === 'css' ? 'btn btn-outline-dark' : 'btn btn-dark active';
     }
 };
+
+window.addEventListener('temaCambiado', (e) => {
+    if (workspace) {
+        workspace.setTheme(e.detail === 'dark' ? DarkTheme : ModernTheme);
+    }
+});
