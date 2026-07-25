@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
 
 class SessionsController extends Controller
 {
@@ -14,9 +13,7 @@ class SessionsController extends Controller
      */
     public function create()
     {
-        //
-
-        return view('auth.login');
+        return back()->with('abrir_login', true);
     }
 
     /**
@@ -24,26 +21,31 @@ class SessionsController extends Controller
      */
     public function store(Request $request)
     {
-      $validated = $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', Password::default()],
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-   
-       
-        if(Auth::attempt($validated)){
+
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/')->with('success','Felicidades');
+
+            return redirect()->intended('/dashboard')->with('success', '¡Bienvenido de nuevo!');
         }
 
-        return back();
+        return back()->withErrors([
+            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+        ])->onlyInput('email');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect('/');
     }

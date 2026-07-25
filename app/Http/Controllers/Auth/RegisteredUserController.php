@@ -14,9 +14,9 @@ class RegisteredUserController extends Controller
 {
 
     public function create(){
-        return view('auth.register');
+        return back()->with('abrir_login', true);
     }
-
+    
     public function store(Request $request){
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],

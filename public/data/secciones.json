@@ -1,0 +1,16 @@
+{
+    "formularios": {
+        "titulo": "Formularios Avanzados y Validaciones",
+        "mensaje": "Descubre cómo capturar datos con inputs modernos y atributos HTML5.",
+        "badge": "Intermedio",
+        "icono": "📝",
+        "contenido": "<h2>Creación de Formularios</h2><p>Los formularios son esenciales para interactuar con los usuarios. Aquí aprenderás a usar etiquetas como <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, y validaciones nativas de HTML5.</p>"
+    },
+    "multimedia": {
+        "titulo": "Multimedia, Audio y Video",
+        "mensaje": "Inserta elementos multimedia nativos optimizados para la web.",
+        "badge": "Avanzado",
+        "icono": "🖼️",
+        "contenido": "<h2>Elementos Multimedia</h2><p>HTML5 permite insertar contenido multimedia de forma nativa utilizando las etiquetas <code>&lt;audio&gt;</code> y <code>&lt;video&gt;</code> sin necesidad de plugins externos.</p>"
+    }
+}
