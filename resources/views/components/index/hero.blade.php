@@ -6,7 +6,7 @@
 
                 <div
                     style="position: relative; width: 100%; height: 400px; border: 1px solid #ccc; border-radius: 0.5rem; overflow: hidden;">
-                    <div id="blocklyDiv" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
+                    <div id="blocklyHeroDiv" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
                 </div>
 
                 <iframe id="preview-iframe" class="hidden" srcdoc=""></iframe>

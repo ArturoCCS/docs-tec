@@ -52,6 +52,7 @@ html{
   height: 70px;
   border: dashed 2px white;
   border-radius: 10px;
+  border: dashed 2px white;
   display: flex;
 
   top:80px;
