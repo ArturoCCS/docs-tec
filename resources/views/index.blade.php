@@ -7,7 +7,7 @@
         };
     </script>
 
-    <div class="overflow-x-hidden w-full" id="timeline-section"> 
+    <div class="overflow-x-hidden w-full bg-base-200 z-100" id="timeline-section"> 
 
         <div class="hero min-h-screen html" id="container">
 

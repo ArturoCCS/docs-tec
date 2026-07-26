@@ -1,5 +1,5 @@
 import './theme.js';
-import('./animated/nav.js');
+import('./animated/index.js');
 
 const necesitaBlockly = document.getElementById('blocklyDiv') || document.getElementById('blocklyHeroDiv');
 

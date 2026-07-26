@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.5 28" style="display:block;">
+<g role="none" class="blocklyBlockCanvas" transform="translate(0.5, 0.5) scale(1)">
+<g role="none" class="blockly_block_factory_preview_block blocklyBlock blocklyDraggable" data-id="r2Y[7uj1{OJN|F|[m|=G">
+<path class="blocklyPath" id="blockly-1jo" stroke="#ffffff" fill="#eeeb42f2" aria-label="Begin stack, PHP, Empty, has input" role="figure" aria-roledescription="statement" d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 50.13548278808594  v 5  V 5  H 58.13548278808594  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 2  V 22  V 27  h -50.13548278808594 a 8 8 0 0,1 -8,-8 z
+">
+</path><g role="none" class="blocklyLabelField" aria-hidden="true" id="r2Y[7uj1{OJN|F|[m|=G_field_blockly-1jq" transform="translate(10,5)">
+
+<text class="blocklyText blocklyFieldText" aria-hidden="true" fill="#000000" stroke="#000000" dominant-baseline="central" x="0" y="8.5">JS</text>
+
+</g><path id="r2Y[7uj1{OJN|F|[m|=G_connection_blockly-1jp" class="blocklyHighlightedConnectionPath" d=" m 0,-5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 5 " transform="translate(58.13548278808594, 5)" role="figure" aria-roledescription="value position"></path></g></g>
+</svg>

@@ -1,6 +1,6 @@
 <x-layout>
     <section>
-        <div class="container mt-4">
+        <div class="mt-4">
             <h1>Ejem blockly</h1>
 
             <div class="btn-group mb-3" role="group" aria-label="Selector de lenguaje">
