@@ -1,5 +1,5 @@
 import './theme.js';
-import('./animated/index.js');
+import './load.js'
 
 const necesitaBlockly = document.getElementById('blocklyDiv') || document.getElementById('blocklyHeroDiv');
 
@@ -7,6 +7,9 @@ if (necesitaBlockly) {
     const inicializarBlockly = async () => {
         try {
             await import('./blockly-generators.js');
+
+            await import('./animated/index.js');
+
 
             if (document.getElementById('blocklyDiv')) {
                 await import('./blockly-setup.js');

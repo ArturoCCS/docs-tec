@@ -23,17 +23,16 @@ const blocks = gsap.utils.toArray(".blocky-item");
 
 const customOffsets = [
     { stack: -20,  x: 0,   rot: 0 },
-    { stack: 10, x: -100,  rot: -200 },
-    { stack: 20, x: 80, rot: 27 },
-
+    { stack: 10, x: -100,  rot: -206 },
+    { stack: 10, x: 80, rot: 27 },
     { stack: -20, x: 30,  rot: 0 },
     { stack: -20, x: -40, rot: 0 },
 
     { stack: 30, x: 200,  rot: 0 },
-    { stack: 36, x: -190, rot: 0},
+ 
+    { stack: -20, x: -570, rot: 0 },
 
     { stack: -20, x: 30,  rot: 0 },
-    { stack: -20, x: -40, rot: 0 },
 ];
 
 
@@ -73,12 +72,12 @@ t2.to(".blocky-item", { y: 500, duration: 0.3, stagger: 0.05 })
         duration: 1.2,
         ease: "power1.in"
     }, "<")
-  .to(blocks[7], {
-        opacity: 1,
+  .to(blocks[5], {
+        opacity: 0,
         duration: 1.2,
         ease: "power1.in"
     }, "<")
-   .to(blocks[8], {
+   .to(blocks[7], {
         opacity: 1,
         duration: 1.2,
         ease: "power1.in"
@@ -93,7 +92,6 @@ ScrollTrigger.create({
     scrub: 1,
     invalidateOnRefresh: true,
     onRefresh: () => {
-        // recalcula solo si el layout cambió (imágenes, resize) — ya no se contamina con transform
         originalBottoms = blocks.map(b => getRestingBottom(b));
     }
 });

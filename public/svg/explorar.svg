@@ -1,0 +1,29 @@
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 36" style="display:block;"
+                    class="w-auto h-12 lg:h-16 transition-transform duration-300 group-hover:scale-105 active:scale-95 text-primary">
+                    <g role="none" class="blocklyBlockCanvas" transform="translate(0, 0) scale(1)">
+                        <g role="none" class="blockly_block_factory_preview_block blocklyBlock blocklyDraggable"
+                            data-id="yx:k-](gw7jR!IPnSnP(">
+
+                            <path class="blocklyPath transition-colors duration-300 group-hover:brightness-110"
+                                id="blockly-1op" stroke="currentColor" stroke-opacity="0.3" fill="currentColor"
+                                aria-label="Begin stack, HTML, Empty, has input" role="figure"
+                                aria-roledescription="statement"
+                                d=" m 0,0  m 0,8 a 8 8 0 0,1 8,-8  h 97  v 5  V 5  V 31  V 31  V 36  h -97 a 8 8 0 0,1 -8,-8 z M 81,5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 6   h 14   v -26 z">
+                            </path>
+
+                            <g role="none" class="blocklyLabelField" aria-hidden="true"
+                                id="yx:k-](gw7jR!IPnSnP(_field_blockly-1or" transform="translate(10,9.5)">
+                                <text class="blocklyText blocklyFieldText" aria-hidden="true" fill="#ffffff"
+                                    font-family="sans-serif" font-size="13px" font-weight="bold"
+                                    dominant-baseline="central" x="0" y="8.5">Explorar</text>
+                            </g>
+
+                            <path id="yx:k-](gw7jR!IPnSnP(_connection_blockly-1oq"
+                                class="blocklyHighlightedConnectionPath"
+                                d=" m 0,-5  v 5  c 0,10  -8,-8  -8,7.5  s 8,-2.5  8,7.5  v 5 "
+                                transform="translate(81, 10)" role="figure" aria-roledescription="value position">
+                            </path>
+
+                        </g>
+                    </g>
+                </svg>

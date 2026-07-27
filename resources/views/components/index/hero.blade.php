@@ -1,8 +1,6 @@
 <div class="hero min-h-[90vh] px-4 py-12 relative overflow-hidden">
 
- 
-
-    <div class="hero-content min-h-[60vh] limit-hero flex-col lg:flex-row gap-8 w-full max-w-7xl mx-auto relative z-20" style="background:  var(--color-base-100)">
+    <div class="hero-content min-h-[60vh] limit-hero flex-col lg:flex-row gap-8 w-full max-w-7xl mx-auto relative z-10" style="background:  var(--color-base-100)">
 
         <div class="w-full lg:w-1/2 text-center lg:text-left space-y-6">
             <span id="hero-tag" class="badge badge-primary badge-outline font-semibold">Programación Visual</span>

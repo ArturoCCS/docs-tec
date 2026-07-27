@@ -34,8 +34,11 @@
         );
     </script>
 </head>
-<body id="body">
-    <div class="init bg-base-100">
+<body id="body" class="overflow-x-hidden">
+
+    <x-loader/>
+
+    <div class="init bg-base-100 opacity-0 transition-opacity duration-700" id="main-content">
         <x-nav />
         <main>
             {{ $slot }}
