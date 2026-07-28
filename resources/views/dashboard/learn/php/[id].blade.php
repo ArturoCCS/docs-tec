@@ -4,7 +4,7 @@
         <div class="flex items-center gap-4">
             <span class="text-4xl">{{ $seccion['icono'] ?? '📄' }}</span>
             <div>
-                <span class="badge badge-primary mb-2">Módulo HTML</span>
+                <span class="badge badge-primary mb-2">Módulo {{ strtoupper($carpeta) }}</span>
                 <h1 class="text-3xl font-extrabold tracking-tight text-base-content">
                     {{ $seccion['titulo'] }}
                 </h1>

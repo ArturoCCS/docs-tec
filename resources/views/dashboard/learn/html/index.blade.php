@@ -1,4 +1,4 @@
-<x-learn.wrapper :idActual="'index'" :secciones="$secciones">
+<x-learn.wrapper :idActual="'index'" :secciones="$secciones" :carpeta="$carpeta">
     <div class="w-full space-y-8 pb-12">
 
         <div class="w-full bg-base-200 p-8 rounded-2xl shadow-xl transition-all duration-300">
@@ -6,14 +6,14 @@
                 <span class="badge badge-secondary badge-outline">Zona index</span>
             </div>
 
-            <h1 class="text-4xl font-extrabold tracking-tight mb-4">Bienvenido al Curso de HTML</h1>
+            <h1 class="text-4xl font-extrabold tracking-tight mb-4">Bienvenido al Curso de {{ strtoupper($carpeta) }}</h1>
             <p class="text-base-content/70 text-lg leading-relaxed mb-6">
                 Aquí encontrarás todo el temario estructurado para dominar el desarrollo web desde las bases hasta
                 conceptos avanzados. Selecciona un módulo o comienza por la introducción.
             </p>
 
             <div class="flex flex-wrap gap-4">
-                <a href="{{ route('html.intro') }}" class="btn btn-primary gap-2">
+                <a href="{{ route('curso.intro', ['carpeta' => $carpeta]) }}" class="btn btn-primary gap-2">
                     Comenzar Introducción →
                 </a>
             </div>
@@ -24,7 +24,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach ($secciones as $key => $data)
-                    <a href="{{ route('seccion.detalle', ['id' => $key]) }}"
+                    <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta ?? 'html', 'id' => $key]) }}"
                         class="card bg-base-200/60 hover:bg-base-200 border border-base-300 p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex flex-row items-center gap-4 group">
 
                         <div class="text-3xl p-3 bg-base-100 rounded-lg group-hover:scale-110 transition-transform">

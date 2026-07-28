@@ -15,7 +15,7 @@
             </p>
 
             <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <a href="{{ route('html.intro') }}" class="btn btn-primary">Empezar con HTML</a>
+                <a href="{{ route('curso.intro', ['carpeta' => $carpeta ?? 'html']) }}" class="btn btn-primary">Empezar con HTML</a>
                 <a href="#timeline-section" class="btn btn-outline">Ver RoadMap</a>
             </div>
 

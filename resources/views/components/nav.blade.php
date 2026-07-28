@@ -19,10 +19,10 @@
                     <li>
                         <a>Cursos</a>
                         <ul class="p-2">
-                            <li><a href="{{ route('html.intro') }}">HTML</a></li>
-                            <li><a href="{{ route('css.intro') }}">CSS</a></li>
-                            <li><a href="{{ route('js.intro') }}">JAVASCRIPT</a></li>
-                            <li><a href="{{ route('php.intro') }}">PHP</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'html']) }}">HTML</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'css']) }}">CSS</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'js']) }}">JAVASCRIPT</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'php']) }}">PHP</a></li>
                         </ul>
                     </li>
 
@@ -47,10 +47,10 @@
                     <details>
                         <summary>Cursos</summary>
                         <ul class="p-2 bg-base-100 w-40 z-1">
-                            <li><a href="{{ route('html.intro') }}">HTML</a></li>
-                            <li><a href="{{ route('css.intro') }}">CSS</a></li>
-                            <li><a href="{{ route('js.intro') }}">JAVASCRIPT</a></li>
-                            <li><a href="{{ route('php.intro') }}">PHP</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'html']) }}">HTML</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'css']) }}">CSS</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'js']) }}">JAVASCRIPT</a></li>
+                            <li><a href="{{ route('curso.intro', ['carpeta' => 'php']) }}">PHP</a></li>
                         </ul>
                     </details>
                 </li>

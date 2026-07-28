@@ -16,9 +16,7 @@
             </p>
 
             <div class="flex flex-wrap gap-4">
-                <a href="{{ route('html.intro') }}" class="btn btn-primary gap-2">
-                    Comenzar Introducción →
-                </a>
+                <a href="{{ route('curso.intro', ['carpeta' => $carpeta ?? 'html']) }}" class="btn btn-primary">Comenzar Introducción →</a>
             </div>
         </div>
 

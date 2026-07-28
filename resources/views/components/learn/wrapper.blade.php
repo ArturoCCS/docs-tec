@@ -1,4 +1,4 @@
-@props(['idActual', 'secciones'])
+@props(['idActual', 'secciones', 'carpeta' => 'html'])
 
 <x-layout>
     <div class="drawer lg:drawer-open bg-base-100 min-h-screen">
@@ -20,9 +20,13 @@
                             <li><a href="{{ route('dashboard') }}">Curso</a></li>
 
                             @if (($idActual ?? '') === 'index')
-                                <li class="font-bold text-primary capitalize">HTML</li>
+                                <li class="font-bold text-primary uppercase">{{ $carpeta }}</li>
                             @else
-                                <li><a href="{{ route('html.index') }}">HTML</a></li>
+                                <li>
+                                    <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => 'index']) }}" class="uppercase">
+                                        {{ $carpeta }}
+                                    </a>
+                                </li>
                                 <li class="font-bold text-primary capitalize">{{ $idActual }}</li>
                             @endif
                         </ul>
@@ -46,26 +50,41 @@
                 <li class="menu-title mt-4">Indice</li>
 
                 <li class="menu-item-modulo" data-titulo="contenido introduccion">
-                    <a href="{{ route('html.index') }}"
+                    <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => 'index']) }}"
                         class="{{ ($idActual ?? '') === 'index' ? 'active font-semibold' : '' }}">
-                        <span class="{{ ($idActual ?? '') === 'index' ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span> Contenido
+                        <span
+                            class="{{ ($idActual ?? '') === 'index' ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
+                        Contenido
                     </a>
                 </li>
 
                 <li class="menu-title">Módulos</li>
 
                 <li class="menu-item-modulo" data-titulo="introduccion">
-                    <a href="{{ route('html.intro') }}"
+                    <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => 'introduction']) }}"
                         class="{{ ($idActual ?? '') === 'introduction' ? 'active font-semibold' : '' }}">
-                        <span class="{{ ($idActual ?? '') === 'introduction' ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span> Introduccion
+                        <span
+                            class="{{ ($idActual ?? '') === 'introduction' ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
+                        Introduccion
                     </a>
                 </li>
 
+                {{-- @if ($carpeta === 'html')
+                    <li class="menu-item-modulo" data-titulo="titulo">
+                        <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => 'titulo']) }}"
+                            class="{{ ($idActual ?? '') === 'titulo' ? 'active font-semibold' : '' }}">
+                            <span class="{{ ($idActual ?? '') === 'titulo' ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
+                            titulo
+                        </a>
+                    </li>
+                @endif --}}
+
                 @foreach ($secciones as $key => $data)
                     <li class="menu-item-modulo" data-titulo="{{ strtolower($data['titulo']) }}">
-                        <a href="{{ route('seccion.detalle', ['id' => $key]) }}"
+                        <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => $key]) }}"
                             class="{{ ($idActual ?? '') === $key ? 'active font-semibold' : '' }}">
-                            <span class="{{ ($idActual ?? '') === $key ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
+                            <span
+                                class="{{ ($idActual ?? '') === $key ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
                             {{ $data['titulo'] }}
                         </a>
                     </li>
@@ -78,7 +97,7 @@
             </ul>
         </div>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const buscador = document.getElementById('buscador-menu');

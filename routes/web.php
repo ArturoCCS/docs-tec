@@ -9,34 +9,33 @@ use App\Http\Controllers\LearnController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+Route::get('/{carpeta}', [LearnController::class, 'mostrarSeccion'])
+    ->defaults('id', 'index')
+    ->where('carpeta', 'html|css|js|php')
+    ->name('curso.index');
 
-Route::get('/html', [LearnController::class, 'index'])->name('html.index');
+Route::get('/{carpeta}/introduction', [LearnController::class, 'mostrarSeccion'])
+    ->defaults('id', 'introduction')
+    ->where('carpeta', 'html|css|js|php')
+    ->name('curso.intro');
+
 
 Route::get('/', [BlocklyController::class, 'hero']);
-
-Route::get('/html/introduccion', [LearnController::class, 'intro'])->name('html.intro');
-
-Route::view('/css', 'dashboard.learn.css')->name('css.intro');
-
-Route::view('/javascript', 'dashboard.learn.js')->name('js.intro');
-
-Route::view('/php', 'dashboard.learn.php')->name('php.intro');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/prueba', [BlocklyController::class, 'index']);
 
     Route::delete('/logout', [SessionsController::class, 'destroy']);
 
-
-    Route::get('/dashboard', function(){
+    Route::get('/dashboard', function () {
         return view('dashboard.index', [
             'user' => Auth::user()
         ]);
     })->name('dashboard');
 
-    Route::get('/html/{id}', [LearnController::class, 'mostrarSeccion'])->name('seccion.detalle');
-
+    Route::get('/{carpeta}/{id}', [LearnController::class, 'mostrarSeccion'])
+        ->where('carpeta', 'html|css|js|php')
+        ->name('seccion.detalle');
 });
 
 Route::middleware('guest')->group(function () {
@@ -46,7 +45,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [SessionsController::class, 'create']);
     Route::post('/login', [SessionsController::class, 'store'])->name('login');
 });
-
 
 Route::get('/admin', function () {
     Gate::authorize('view-admin');
