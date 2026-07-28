@@ -1,52 +1,46 @@
-<x-learn.wrapper :idActual="'index'" :secciones="$secciones" :carpeta="$carpeta">
-    <div class="w-full space-y-8 pb-12">
+<x-learn.php.wrapper :idActual="'index'" :secciones="$secciones" :carpeta="$carpeta">
+    <div class="duel-card" style="--rarity: var(--accent); margin-bottom: 1rem;">
+        <span class="card-rarity">Mazo · {{ strtoupper($carpeta) }}</span>
+        <h1 class="card-title">Tu mazo de PHP</h1>
+        <p class="card-sub">
+            9 cartas te esperan en el tablero. Derrota al jefe de cada nivel para desbloquear
+            la siguiente carta y sumar XP.
+        </p>
+        <a href="{{ route('curso.intro', ['carpeta' => $carpeta]) }}" class="btn btn-primary">Empezar aventura →</a>
+    </div>
 
-        <div class="w-full bg-base-200 p-8 rounded-2xl shadow-xl transition-all duration-300">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="badge badge-secondary badge-outline">Zona index</span>
-            </div>
-
-            <h1 class="text-4xl font-extrabold tracking-tight mb-4">Bienvenido al Curso de {{ strtoupper($carpeta) }}</h1>
-            <p class="text-base-content/70 text-lg leading-relaxed mb-6">
-                Aquí encontrarás todo el temario estructurado para dominar el desarrollo web desde las bases hasta
-                conceptos avanzados. Selecciona un módulo o comienza por la introducción.
-            </p>
-
-            <div class="flex flex-wrap gap-4">
-                <a href="{{ route('curso.intro', ['carpeta' => $carpeta]) }}" class="btn btn-primary gap-2">
-                    Comenzar Introducción →
+    <div class="level-map" id="level-map">
+        @php $i = 0; @endphp
+        @foreach ($secciones as $key => $data)
+            @php $i++; @endphp
+            <div class="level-node-row {{ $i % 2 === 1 ? 'left' : 'right' }}">
+                <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => $key]) }}"
+                   class="level-node" data-key="{{ $key }}" data-index="{{ $i }}">
+                    <span class="badge-circle">{{ $data['icono'] ?? '🃏' }}</span>
+                    <span class="lvl-num">Nivel {{ $i }}</span>
+                    <span class="lvl-label">{{ $data['titulo'] }}</span>
                 </a>
             </div>
-        </div>
-
-        <div>
-            <h2 class="text-2xl font-bold mb-4 text-base-content">Módulos del Curso</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                @foreach ($secciones as $key => $data)
-                    <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta ?? 'html', 'id' => $key]) }}"
-                        class="card bg-base-200/60 hover:bg-base-200 border border-base-300 p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex flex-row items-center gap-4 group">
-
-                        <div class="text-3xl p-3 bg-base-100 rounded-lg group-hover:scale-110 transition-transform">
-                            {{ $data['icono'] ?? '📄' }}
-                        </div>
-
-                        <div class="flex-1">
-                            <h3 class="font-bold text-lg text-base-content group-hover:text-primary transition-colors">
-                                {{ $data['titulo'] }}
-                            </h3>
-                            <p class="text-xs text-base-content/60 mt-1">
-                                Clic para ver el contenido del módulo
-                            </p>
-                        </div>
-
-                        <div class="text-base-content/40 group-hover:translate-x-1 transition-transform">
-                            →
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        </div>
-
+        @endforeach
     </div>
-</x-learn.wrapper>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carpeta = "{{ $carpeta }}";
+            const done = new Set(JSON.parse(localStorage.getItem(`learn-progress-${carpeta}`) || '[]'));
+            const nodes = document.querySelectorAll('#level-map .level-node');
+
+            nodes.forEach((node, i) => {
+                const key = node.dataset.key;
+                if (done.has(key)) {
+                    node.classList.add('done');
+                } else if (i === 0 || done.has(nodes[i - 1].dataset.key)) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.add('locked');
+                }
+            });
+        });
+    </script>
+
+</x-learn.php.wrapper >

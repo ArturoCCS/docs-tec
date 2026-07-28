@@ -1,23 +1,23 @@
-<x-learn.wrapper :idActual="'introduction'" :secciones="$secciones"  :carpeta="$carpeta">
-    <div class="w-full space-y-6 pb-12">
+<x-learn.php.wrapper :idActual="'introduction'" :secciones="$secciones" :carpeta="$carpeta">
 
-        <div class="flex items-center gap-4">
-            <span class="text-4xl">💻</span>
-            <div>
-                <span class="badge badge-primary mb-2">Módulo {{ strtoupper($carpeta) }}</span>
-                <h1 class="text-3xl font-extrabold tracking-tight text-base-content">
-                    Introducción
-                </h1>
-            </div>
+    <div class="duel-card" style="--rarity: var(--legendary);">
+        <div class="card-top">
+            <span class="card-rarity" style="color: var(--legendary); border-color: var(--legendary);">Tutorial</span>
+            <span class="card-art" style="border-color: var(--legendary);">🐘</span>
         </div>
 
-        <div class="divider"></div>
+        <h1 class="card-title">Bienvenido al reino de PHP</h1>
+        <p class="card-sub">Antes de tu primer duelo, conoce las reglas del juego.</p>
 
-        <div class="prose max-w-none bg-base-200/50 p-6 lg:p-8 rounded-2xl shadow-sm">
-            <p>Bienvenido al curso de HTML. Aquí aprenderás los conceptos fundamentales para estructurar páginas web
-                modernas...</p>
+        <div class="card-body">
+            <p>PHP es el lenguaje que corre "detrás" de la página: procesa datos, decide qué mostrar y
+                se comunica con formularios y bases de datos antes de que el HTML llegue al navegador.</p>
+            <p>En este mazo vas a dominar, carta por carta: la sintaxis básica, variables, salida de datos,
+                condicionales, operadores, <code>switch</code>, bucles, funciones y cómo recibir datos
+                de un formulario.</p>
+            <p>Cada nivel del mapa es una carta con contenido + un duelo (quiz). Gana el duelo para
+                desbloquear el siguiente nivel. Tienes 3 vidas ❤️❤️❤️ — cada respuesta incorrecta cuesta una.</p>
         </div>
-
     </div>
 
     @php
@@ -25,18 +25,13 @@
         $firstKey = count($keys) > 0 ? $keys[0] : null;
     @endphp
 
-    <div class="flex justify-between items-center pt-8 mt-12 border-t border-base-300">
-
-        <a href="{{ route('curso.index', ['carpeta' => $carpeta]) }}" class="btn btn-outline btn-sm gap-2">
-            ← Volver al Índice
-        </a>
-
+    <div class="card-nav">
+        <a href="{{ route('curso.index', ['carpeta' => $carpeta]) }}" class="btn">← Mapa de niveles</a>
         @if ($firstKey !== null)
-            <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => $firstKey]) }}" class="btn btn-primary btn-sm gap-2">
-                {{ ucfirst($firstKey) }} →
+            <a href="{{ route('seccion.detalle', ['carpeta' => $carpeta, 'id' => $firstKey]) }}" class="btn btn-primary">
+                Nivel 1 →
             </a>
         @endif
-
     </div>
 
 </x-learn.wrapper>

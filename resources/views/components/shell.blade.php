@@ -8,20 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
-
     @fonts
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/a/ACg8ocKkMg87b9TD4_HHaAPTkupTZUbHMbyEbnBoH_3UZ11K-NUpji4=s261-c-no">
-
+    
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrambleTextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Draggable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Flip.min.js"></script>
+
+
+    @vite(['resources/css/styles/learn.css'])
 
     <script>
         window.TemasData = {
@@ -38,16 +40,17 @@
         );
     </script>
 </head>
-<body id="body" class="overflow-x-hidden">
+<body id="body" class="learn-body overflow-x-hidden">
 
-    <x-loader/>
+    <x-loader />
 
-    <div class="init bg-base-100 opacity-0 transition-opacity duration-700" id="main-content">
-        <x-nav />
+    <div class="init opacity-0 transition-opacity duration-700" id="main-content">
         <main>
             {{ $slot }}
-        </main>
+
         <x-footer />
+        </main>
     </div>
+    <x-auth.modal />
 </body>
 </html>

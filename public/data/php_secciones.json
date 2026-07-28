@@ -1,16 +1,246 @@
 {
-    "formularios": {
-        "titulo": "Formularios Avanzados y Validaciones",
-        "mensaje": "Descubre cómo capturar datos con inputs modernos y atributos HTML5.",
-        "badge": "Intermedio",
-        "icono": "📝",
-        "contenido": "<h2>Creación de Formularios</h2><p>Los formularios son esenciales para interactuar con los usuarios. Aquí aprenderás a usar etiquetas como <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, y validaciones nativas de HTML5.</p>"
+    "sintaxis": {
+        "titulo": "Sintaxis y Comentarios",
+        "mensaje": "Las reglas básicas para que el intérprete de PHP entienda tu código.",
+        "badge": "Nivel 1",
+        "icono": "🧩",
+        "rareza": "comun",
+        "boss": "Error de Sintaxis",
+        "contenido": "<h2>Etiquetas de apertura y cierre</h2><p>Todo código PHP vive dentro de <code>&lt;?php</code> y <code>?&gt;</code>. Si el archivo es 100% PHP, se suele omitir la etiqueta de cierre para evitar espacios en blanco accidentales.</p><pre><code>&lt;?php\n    echo 'Hola mundo';\n?&gt;</code></pre><h2>Comentarios</h2><p>Sirven para dejar notas que el intérprete ignora. Hay tres formas:</p><pre><code>// Comentario de una línea\n# También es de una línea (estilo shell)\n/* Comentario\n   de varias líneas */</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Cuál es la etiqueta correcta para abrir un bloque de código PHP?",
+                "opciones": ["<php>", "<?php", "<%php", "#php"],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estas NO es una forma válida de comentar en PHP?",
+                "opciones": ["// comentario", "# comentario", "<!-- comentario -->", "/* comentario */"],
+                "correcta": 2
+            }
+        ]
     },
-    "multimedia": {
-        "titulo": "Multimedia, Audio y Video",
-        "mensaje": "Inserta elementos multimedia nativos optimizados para la web.",
-        "badge": "Avanzado",
-        "icono": "🖼️",
-        "contenido": "<h2>Elementos Multimedia</h2><p>HTML5 permite insertar contenido multimedia de forma nativa utilizando las etiquetas <code>&lt;audio&gt;</code> y <code>&lt;video&gt;</code> sin necesidad de plugins externos.</p>"
+
+    "variables": {
+        "titulo": "Variables",
+        "mensaje": "Cajas con nombre para guardar datos que pueden cambiar.",
+        "badge": "Nivel 2",
+        "icono": "📦",
+        "rareza": "comun",
+        "boss": "Variable Indefinida",
+        "contenido": "<h2>Declarar variables</h2><p>En PHP toda variable empieza con <code>$</code>, no necesita un tipo declarado y puede cambiar de tipo en cualquier momento.</p><pre><code>$nombre = 'Ana';\n$edad = 25;\n$activo = true;</code></pre><h2>Reglas de nombres</h2><p>Deben empezar con letra o guion bajo (nunca con número) y son sensibles a mayúsculas: <code>$edad</code> y <code>$Edad</code> son variables distintas.</p>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué símbolo antecede a toda variable en PHP?",
+                "opciones": ["#", "@", "$", "&"],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál de estos nombres de variable es inválido?",
+                "opciones": ["$nombre1", "$_edad", "$1nombre", "$Nombre"],
+                "correcta": 2
+            }
+        ]
+    },
+
+    "salida-datos": {
+        "titulo": "Salida de Datos",
+        "mensaje": "Cómo mostrar información en pantalla: echo, print y var_dump.",
+        "badge": "Nivel 3",
+        "icono": "🖨️",
+        "rareza": "comun",
+        "boss": "Buffer Vacío",
+        "contenido": "<h2>echo y print</h2><p><code>echo</code> puede recibir varios valores separados por coma y no devuelve nada. <code>print</code> solo acepta un valor y devuelve 1, por lo que puede usarse dentro de expresiones.</p><pre><code>echo 'Hola', ' ', 'mundo';\nprint 'Hola mundo';</code></pre><h2>var_dump()</h2><p>Muestra el tipo y el valor exacto de una variable — imprescindible para depurar.</p><pre><code>var_dump($edad); // int(25)\nvar_dump('25'); // string(2) \"25\"</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué diferencia principal tiene echo frente a print?",
+                "opciones": [
+                    "echo solo imprime números",
+                    "echo acepta múltiples valores separados por coma, print no",
+                    "print es más rápido siempre",
+                    "No hay ninguna diferencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usa principalmente var_dump()?",
+                "opciones": [
+                    "Para borrar una variable",
+                    "Para ver el tipo y valor exacto de una variable al depurar",
+                    "Para declarar una constante",
+                    "Para convertir un string a número"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+
+    "condicionales": {
+        "titulo": "Condicionales (if / else)",
+        "mensaje": "Haz que tu código tome decisiones según se cumpla o no una condición.",
+        "badge": "Nivel 4",
+        "icono": "🔀",
+        "rareza": "raro",
+        "boss": "El Bifurcador",
+        "contenido": "<h2>if, else if, else</h2><p>Evalúan una condición y ejecutan un bloque u otro según el resultado (verdadero o falso).</p><pre><code>if ($edad >= 18) {\n    echo 'Eres mayor de edad';\n} elseif ($edad > 0) {\n    echo 'Eres menor de edad';\n} else {\n    echo 'Edad inválida';\n}</code></pre><p>Solo se ejecuta el primer bloque cuya condición sea verdadera.</p>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué palabra clave se usa para evaluar una condición adicional después de un if?",
+                "opciones": ["elseif", "orif", "elsecase", "nextif"],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Si ninguna condición de un if/elseif es verdadera, ¿qué bloque se ejecuta?",
+                "opciones": ["El primero", "Ninguno, a menos que exista un else", "Todos", "El último elseif siempre"],
+                "correcta": 1
+            }
+        ]
+    },
+
+    "operadores-comparacion": {
+        "titulo": "Operadores de Comparación",
+        "mensaje": "== vs === y toda la familia de comparadores.",
+        "badge": "Nivel 5",
+        "icono": "⚖️",
+        "rareza": "raro",
+        "boss": "El Impostor de Tipos",
+        "contenido": "<h2>Igualdad</h2><p><code>==</code> compara solo el valor (convierte tipos si hace falta). <code>===</code> compara valor Y tipo, sin conversiones — es la más segura.</p><pre><code>0 == 'a';   // false en PHP 8, cuidado en versiones antiguas\n'5' == 5;   // true\n'5' === 5;  // false, tipos distintos</code></pre><h2>Familia completa</h2><p><code>!=</code> y <code>&lt;&gt;</code> son equivalentes (distinto valor). <code>!==</code> es distinto valor o tipo. Además: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> para comparar magnitudes.</p>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué operador compara valor y tipo al mismo tiempo?",
+                "opciones": ["==", "===", "<>", "="],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es equivalente a != en PHP?",
+                "opciones": ["!==", "<>", "==", "><"],
+                "correcta": 1
+            }
+        ]
+    },
+
+    "operadores-logicos": {
+        "titulo": "Operadores Lógicos",
+        "mensaje": "Combina varias condiciones con and, or, xor y niega con !.",
+        "badge": "Nivel 6",
+        "icono": "🧠",
+        "rareza": "raro",
+        "boss": "El Contradictorio",
+        "contenido": "<h2>and / &&, or / ||</h2><p><code>&&</code> y <code>and</code> exigen que ambas condiciones sean verdaderas. <code>||</code> y <code>or</code> requieren que al menos una lo sea. La diferencia entre las versiones de símbolos y las de palabra está en la precedencia (los símbolos tienen mayor prioridad).</p><pre><code>if ($edad >= 18 && $tieneId) {\n    echo 'Puede entrar';\n}</code></pre><h2>xor y !</h2><p><code>xor</code> es verdadero solo si exactamente una de las dos condiciones es verdadera. <code>!</code> invierte un valor booleano.</p><pre><code>true xor true;  // false\ntrue xor false; // true\n!true;          // false</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué operador requiere que AMBAS condiciones sean verdaderas?",
+                "opciones": ["||", "&&", "xor", "!"],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo es verdadero un xor?",
+                "opciones": [
+                    "Cuando ambas condiciones son verdaderas",
+                    "Cuando ambas son falsas",
+                    "Cuando exactamente una de las dos es verdadera",
+                    "Siempre"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+
+    "switch": {
+        "titulo": "Switch",
+        "mensaje": "Una alternativa más ordenada a múltiples if/elseif encadenados.",
+        "badge": "Nivel 7",
+        "icono": "🎛️",
+        "rareza": "epico",
+        "boss": "El Laberinto de Casos",
+        "contenido": "<h2>Estructura básica</h2><p><code>switch</code> compara una variable contra varios valores posibles (<code>case</code>). No olvides el <code>break</code> o la ejecución continuará al siguiente caso.</p><pre><code>switch ($dia) {\n    case 'lunes':\n        echo 'Inicio de semana';\n        break;\n    case 'viernes':\n        echo 'Casi fin de semana';\n        break;\n    default:\n        echo 'Día normal';\n}</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué pasa si olvidas el break dentro de un case?",
+                "opciones": [
+                    "PHP lanza un error de sintaxis",
+                    "La ejecución continúa hacia el siguiente case (fallthrough)",
+                    "El switch se detiene sin ejecutar nada",
+                    "Se ejecuta solo el default"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué palabra clave define el caso que se ejecuta si nada coincide?",
+                "opciones": ["else", "default", "otherwise", "fallback"],
+                "correcta": 1
+            }
+        ]
+    },
+
+    "bucles": {
+        "titulo": "Bucles",
+        "mensaje": "while, do while, for y foreach — repite código sin copiarlo y pegarlo.",
+        "badge": "Nivel 8",
+        "icono": "🔁",
+        "rareza": "epico",
+        "boss": "El Bucle Infinito",
+        "contenido": "<h2>while y do while</h2><p><code>while</code> evalúa la condición antes de entrar; si es falsa desde el inicio, nunca se ejecuta. <code>do while</code> ejecuta el bloque al menos una vez y luego evalúa.</p><pre><code>while ($i < 5) { $i++; }\n\ndo { $i++; } while ($i < 5);</code></pre><h2>for y foreach</h2><p><code>for</code> es ideal cuando sabes cuántas repeticiones necesitas. <code>foreach</code> recorre arrays directamente, elemento por elemento.</p><pre><code>for ($i = 0; $i < 5; $i++) {\n    echo $i;\n}\n\nforeach ($frutas as $fruta) {\n    echo $fruta;\n}</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué bucle garantiza ejecutarse al menos una vez, aunque la condición sea falsa?",
+                "opciones": ["while", "for", "do while", "foreach"],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es el bucle más adecuado para recorrer un array elemento por elemento?",
+                "opciones": ["foreach", "do while", "switch", "if"],
+                "correcta": 0
+            }
+        ]
+    },
+
+    "funciones": {
+        "titulo": "Funciones",
+        "mensaje": "Empaqueta código reutilizable con nombre, parámetros y valor de retorno.",
+        "badge": "Nivel 9",
+        "icono": "🧮",
+        "rareza": "epico",
+        "boss": "El Alcance Perdido",
+        "contenido": "<h2>Definir y llamar</h2><p>Una función se declara con <code>function</code>, puede recibir parámetros (incluso con valores por defecto) y devolver un resultado con <code>return</code>.</p><pre><code>function saludar($nombre = 'invitado') {\n    return \"Hola, {$nombre}\";\n}\n\necho saludar('Ana'); // Hola, Ana\necho saludar();      // Hola, invitado</code></pre><h2>Alcance (scope)</h2><p>Una variable creada dentro de una función no existe fuera de ella, salvo que la devuelvas con <code>return</code> o la declares como <code>global</code>.</p>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué palabra clave se usa para devolver un valor desde una función?",
+                "opciones": ["echo", "return", "print", "output"],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con una variable declarada dentro de una función?",
+                "opciones": [
+                    "Está disponible en todo el archivo",
+                    "Solo existe dentro de esa función (scope local)",
+                    "Se vuelve una constante",
+                    "Sobrescribe cualquier variable global con el mismo nombre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+
+    "formularios": {
+        "titulo": "Formularios: action y method",
+        "mensaje": "El puente entre el HTML que el usuario llena y el PHP que lo procesa.",
+        "badge": "Nivel 10 · Final",
+        "icono": "📮",
+        "rareza": "legendario",
+        "boss": "El Rey de los Formularios",
+        "contenido": "<h2>action y method</h2><p><code>action</code> indica a qué archivo o ruta se envían los datos del formulario. <code>method</code> define cómo se envían: <code>GET</code> (visibles en la URL, para búsquedas o filtros) o <code>POST</code> (ocultos en el cuerpo de la petición, para datos sensibles o formularios grandes).</p><pre><code>&lt;form action=\"procesar.php\" method=\"POST\"&gt;\n    &lt;input type=\"text\" name=\"nombre\"&gt;\n    &lt;button type=\"submit\"&gt;Enviar&lt;/button&gt;\n&lt;/form&gt;</code></pre><h2>Recibir los datos en PHP</h2><p>Los datos enviados quedan disponibles en los arrays superglobales <code>$_GET</code> o <code>$_POST</code>, según el method usado.</p><pre><code>// procesar.php\n$nombre = $_POST['nombre'];\necho \"Hola, {$nombre}\";</code></pre>",
+        "quiz": [
+            {
+                "pregunta": "¿Qué atributo del formulario indica a dónde se envían los datos?",
+                "opciones": ["method", "action", "target", "src"],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un formulario usa method=\"POST\", ¿en qué array superglobal de PHP llegan los datos?",
+                "opciones": ["$_GET", "$_POST", "$_FORM", "$_DATA"],
+                "correcta": 1
+            }
+        ]
     }
 }
