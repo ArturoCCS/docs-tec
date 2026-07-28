@@ -68,7 +68,7 @@ class LearnController extends Controller
 
 
         }else if($carpeta == 'js'){
-            
+            $requirements = self::requiredListJS();
             if(array_key_exists($id, $requirements)){
                 $needed = $requirements[$id];
                 if(!$unit) { abort(404, 'Unidad no encontrada :('); }
@@ -182,7 +182,7 @@ class LearnController extends Controller
     }
     public static function completedJS($seccion){
         $completed = self::completedListJS();
-        return $requirements[$seccion] ?? 0;
+        return $completed[$seccion] ?? 0;
     }
     public static function requiredPHP($seccion){
         $requirements = self::requiredListPHP();
@@ -190,7 +190,7 @@ class LearnController extends Controller
     }
     public static function completedPHP($seccion){
         $completed = self::completedListPHP();
-        return $requirements[$seccion] ?? 0;
+        return $completed[$seccion] ?? 0;
     }
     public static function requiredListJS() {
         return [
