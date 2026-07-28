@@ -39,9 +39,9 @@ class User extends Authenticatable
         return $this->role === 'student';
     }
 
-    public function completedExercises(): BelongsToMany {
-        return $this->belongsToMany(Exercise::class, 'exercise_user')
-                ->withPivot('completed', 'completed_at')
+    public function units(): BelongsToMany {
+        return $this->belongsToMany(Unit::class, 'unit_user')
+                ->withPivot('percentage')
                 ->withTimestamps();
     }
 }

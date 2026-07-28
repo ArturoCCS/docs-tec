@@ -1,16 +1,176 @@
 {
-    "formularios": {
-        "titulo": "Formularios Avanzados y Validaciones",
-        "mensaje": "Descubre cómo capturar datos con inputs modernos y atributos HTML5.",
-        "badge": "Intermedio",
-        "icono": "📝",
-        "contenido": "<h2>Creación de Formularios</h2><p>Los formularios son esenciales para interactuar con los usuarios. Aquí aprenderás a usar etiquetas como <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, y validaciones nativas de HTML5.</p>"
-    },
-    "multimedia": {
-        "titulo": "Multimedia, Audio y Video",
-        "mensaje": "Inserta elementos multimedia nativos optimizados para la web.",
-        "badge": "Avanzado",
-        "icono": "🖼️",
-        "contenido": "<h2>Elementos Multimedia</h2><p>HTML5 permite insertar contenido multimedia de forma nativa utilizando las etiquetas <code>&lt;audio&gt;</code> y <code>&lt;video&gt;</code> sin necesidad de plugins externos.</p>"
-    }
+  "u3-varcons": {
+    "titulo": "Variables y Constantes",
+    "mensaje": "Declara y usa var, let y const; entiende el alcance y el hoisting.",
+    "icono": "📦",
+    "contenido": "<h2>Declaración de variables</h2><p>En JavaScript puedes declarar variables con <code>var</code>, <code>let</code> y constantes con <code>const</code>. <code>let</code> y <code>const</code> tienen alcance de bloque, mientras que <code>var</code> tiene alcance de función. Las constantes (<code>const</code>) no pueden reasignarse, pero si son objetos o arreglos sus propiedades sí pueden modificarse.</p><h3>Ejemplo</h3><pre><code>// var (alcance de función, evita su uso en código moderno)\nvar nombre = \"Ana\";\n// let (alcance de bloque, permite reasignación)\nlet edad = 25;\nedad = 26; // reasignación válida\n// const (no se puede reasignar)\nconst PI = 3.1416;\n// PI = 3.14; // Error: Assignment to constant variable\n// Las constantes que contienen objetos sí permiten modificar sus propiedades\nconst persona = { nombre: \"Luis\" };\npersona.nombre = \"Carlos\"; // esto es válido</code></pre>",
+    "quiz": [
+      {
+        "pregunta": "¿Cuál de las siguientes afirmaciones sobre <code>const</code> es correcta?",
+        "opciones": [
+          "Las constantes no pueden cambiar su valor, ni siquiera si son objetos",
+          "Las constantes declaradas con const tienen alcance de bloque",
+          "const permite reasignación, igual que let",
+          "Las constantes solo pueden ser de tipo numérico"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de alcance tiene la variable declarada con <code>let</code>?",
+        "opciones": [
+          "Alcance global",
+          "Alcance de función",
+          "Alcance de bloque",
+          "Alcance de script"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  "u3-aritmetica": {
+    "titulo": "Operaciones Aritméticas",
+    "mensaje": "Operadores aritméticos y precedencia en JavaScript.",
+    "icono": "➕",
+    "contenido": "<h2>Operadores aritméticos</h2><p>JavaScript proporciona los operadores estándar: suma (<code>+</code>), resta (<code>-</code>), multiplicación (<code>*</code>), división (<code>/</code>), módulo (<code>%</code>) y exponente (<code>**</code>). También existen los operadores de incremento (<code>++</code>) y decremento (<code>--</code>).</p><h3>Ejemplos</h3><pre><code>let suma = 10 + 5;       // 15\nlet resta = 10 - 5;      // 5\nlet multiplicacion = 10 * 5; // 50\nlet division = 10 / 5;   // 2\nlet modulo = 10 % 3;     // 1 (resto)\nlet potencia = 2 ** 3;   // 8\nlet contador = 1;\ncontador++; // 2</code></pre><h3>Precedencia</h3><p>La precedencia sigue las reglas matemáticas: primero paréntesis, luego exponentes, multiplicación/división/módulo, y finalmente suma/resta.</p>",
+    "quiz": [
+      {
+        "pregunta": "¿Cuál es el resultado de <code>10 % 3</code>?",
+        "opciones": ["1", "2", "3", "0"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué operador se usa para elevar un número a una potencia?",
+        "opciones": ["^", "**", "pow()", "++"],
+        "correcta": 1
+      }
+    ]
+  },
+  "u3-ifelse": {
+    "titulo": "Condicionales if / else",
+    "mensaje": "Toma decisiones con if, else if y else.",
+    "icono": "🔀",
+    "contenido": "<h2>Estructura if / else</h2><p>La sentencia <code>if</code> ejecuta un bloque si una condición es verdadera. Se puede combinar con <code>else if</code> para múltiples condiciones y con <code>else</code> para un bloque alternativo.</p><h3>Sintaxis</h3><pre><code>if (condición) {\n  // código si verdadero\n} else if (otraCondición) {\n  // código si otra verdadera\n} else {\n  // código si ninguna es verdadera\n}</code></pre><h3>Ejemplo</h3><pre><code>let edad = 18;\nif (edad >= 18) {\n  console.log('Eres mayor de edad');\n} else {\n  console.log('Eres menor de edad');\n}</code></pre>",
+    "quiz": [
+      {
+        "pregunta": "Dado el código <code>if (5 > 3) { console.log('verdadero'); } else { console.log('falso'); }</code> ¿qué se imprime?",
+        "opciones": ["verdadero", "falso", "undefined", "error"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué sucede si la condición de un <code>if</code> es falsa y no hay <code>else</code>?",
+        "opciones": [
+          "Se ejecuta el siguiente bloque de código",
+          "El programa lanza un error",
+          "No se ejecuta nada dentro del if",
+          "Se ejecuta el bloque else automáticamente"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  "u3-ternario": {
+    "titulo": "Operador Ternario",
+    "mensaje": "Una forma abreviada de if/else para asignaciones simples.",
+    "icono": "❓",
+    "contenido": "<h2>Operador ternario</h2><p>El operador ternario es una forma abreviada de <code>if...else</code> que se utiliza para asignar un valor basado en una condición. Su sintaxis es: <code>condición ? valorSiVerdadero : valorSiFalso</code>.</p><h3>Ejemplo</h3><pre><code>let edad = 20;\nlet mensaje = (edad >= 18) ? 'Mayor de edad' : 'Menor de edad';\nconsole.log(mensaje); // Mayor de edad</code></pre><p>Es útil para asignaciones simples y para evitar bloques <code>if</code> extensos.</p>",
+    "quiz": [
+      {
+        "pregunta": "¿Qué valor retorna la expresión <code>(10 > 5) ? 'mayor' : 'menor'</code>?",
+        "opciones": ["'mayor'", "'menor'", "true", "false"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál de estas es la sintaxis correcta del operador ternario?",
+        "opciones": [
+          "condición ? valor1 : valor2",
+          "condición :: valor1 : valor2",
+          "condición ? valor1 o valor2",
+          "if (condición) valor1 else valor2"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  "u3-switch": {
+    "titulo": "Estructura switch",
+    "mensaje": "Evalúa múltiples casos de forma ordenada.",
+    "icono": "🎛️",
+    "contenido": "<h2>Switch</h2><p>La sentencia <code>switch</code> evalúa una expresión y ejecuta el bloque de código correspondiente al caso que coincida. Es útil cuando se tienen múltiples condiciones basadas en un mismo valor.</p><h3>Sintaxis</h3><pre><code>switch (expresión) {\n  case valor1:\n    // código\n    break;\n  case valor2:\n    // código\n    break;\n  default:\n    // código si ningún caso coincide\n}</code></pre><h3>Ejemplo</h3><pre><code>let dia = 3;\nlet nombreDia;\nswitch (dia) {\n  case 1: nombreDia = 'Lunes'; break;\n  case 2: nombreDia = 'Martes'; break;\n  case 3: nombreDia = 'Miércoles'; break;\n  default: nombreDia = 'Día no válido';\n}\nconsole.log(nombreDia); // Miércoles</code></pre>",
+    "quiz": [
+      {
+        "pregunta": "Si se ejecuta <code>switch(2)</code> con casos 1, 2 y 3, y cada caso imprime su número (con <code>break</code>), ¿qué se imprimirá?",
+        "opciones": ["2", "1,2,3", "1", "No imprime nada"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué palabra clave se usa para ejecutar un código cuando ningún caso coincide?",
+        "opciones": ["default", "otherwise", "else", "fallback"],
+        "correcta": 0
+      }
+    ]
+  },
+  "u3-loops": {
+    "titulo": "Ciclos: for, while y do while",
+    "mensaje": "Repite bloques de código con diferentes estructuras de bucle.",
+    "icono": "🔄",
+    "contenido": "<h2>Bucles en JavaScript</h2><p>Los bucles permiten repetir un bloque de código varias veces. <code>for</code> se usa cuando se conoce el número de iteraciones, <code>while</code> cuando se repite mientras una condición sea verdadera, y <code>do while</code> ejecuta al menos una vez.</p><h3>Ejemplos</h3><pre><code>// for\nfor (let i = 0; i < 5; i++) {\n  console.log(i); // 0,1,2,3,4\n}\n\n// while\nlet j = 0;\nwhile (j < 5) {\n  console.log(j);\n  j++;\n}\n\n// do while\nlet k = 0;\ndo {\n  console.log(k);\n  k++;\n} while (k < 5);</code></pre>",
+    "quiz": [
+      {
+        "pregunta": "¿Cuántas veces se ejecuta el bloque en el bucle <code>for (let i = 0; i < 5; i++)</code>?",
+        "opciones": ["4", "5", "6", "0"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué bucle garantiza ejecutarse al menos una vez, aunque la condición sea falsa?",
+        "opciones": ["while", "for", "do while", "forEach"],
+        "correcta": 2
+      }
+    ]
+  },
+  "u3-funciones": {
+    "titulo": "Funciones",
+    "mensaje": "Organiza y reutiliza código con funciones (declaración, expresión y arrow).",
+    "icono": "⚙️",
+    "contenido": "<h2>Funciones en JavaScript</h2><p>Las funciones son bloques de código reutilizables que pueden recibir parámetros y devolver un valor. Se pueden declarar con <code>function</code>, como expresiones o usando arrow functions (<code>=></code>).</p><h3>Declaraciones</h3><pre><code>function sumar(a, b) {\n  return a + b;\n}\n\n// Expresión de función\nconst restar = function(a, b) {\n  return a - b;\n};\n\n// Arrow function\nconst multiplicar = (a, b) => a * b;</code></pre><p>Las funciones pueden tener parámetros por defecto y ser anónimas.</p>",
+    "quiz": [
+      {
+        "pregunta": "¿Cuál de las siguientes es una forma correcta de declarar una función que suma dos números?",
+        "opciones": [
+          "function sum(a,b){return a+b;}",
+          "let sum = (a,b) => a+b;",
+          "Ambas son correctas",
+          "Ninguna es correcta"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué palabra clave se usa para devolver un valor desde una función?",
+        "opciones": ["return", "echo", "print", "output"],
+        "correcta": 0
+      }
+    ]
+  },
+  "u3-document": {
+    "titulo": "Document, write y getElementById",
+    "mensaje": "Manipula el DOM con document.write y getElementById.",
+    "icono": "📄",
+    "contenido": "<h2>Manipulación del DOM</h2><p><code>document.write()</code> es un método que escribe contenido HTML directamente en el documento. Aunque es útil para ejemplos, en la práctica se recomienda usar <code>getElementById</code> para manipular elementos existentes.</p><h3>Ejemplos</h3><pre><code>// document.write\ndocument.write('<h1>Hola Mundo</h1>');\n\n// getElementById\n// HTML: <div id=\"miDiv\">Contenido</div>\nlet elemento = document.getElementById('miDiv');\nelemento.innerHTML = 'Nuevo contenido';</code></pre><p><code>getElementById</code> devuelve el elemento con el id especificado, permitiendo modificar su contenido, estilo o atributos.</p>",
+    "quiz": [
+      {
+        "pregunta": "¿Qué método se utiliza para seleccionar un elemento del DOM por su atributo <code>id</code>?",
+        "opciones": [
+          "document.getElementById()",
+          "document.querySelector()",
+          "document.getElementsByClassName()",
+          "Todas son válidas"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál de estos métodos escribe directamente en el documento HTML?",
+        "opciones": ["document.write()", "document.innerHTML()", "document.text()", "document.append()"],
+        "correcta": 0
+      }
+    ]
+  }
 }

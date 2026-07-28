@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,12 @@ class RegisteredUserController extends Controller
         ]);
 
         Auth::login($user);
+
+        $units = Unit::get();
+
+        foreach( $units as $unit ){
+            $user->units()->attach($unit->id, ['percentage' => 0]);
+        }
 
         return redirect('/');
     }

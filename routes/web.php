@@ -9,6 +9,8 @@ use App\Http\Controllers\LearnController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+use Illuminate\Http\Request;
+
 Route::get('/{carpeta}', [LearnController::class, 'mostrarSeccion'])
     ->defaults('id', 'index')
     ->where('carpeta', 'html|css|js|php')
@@ -36,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/{carpeta}/{id}', [LearnController::class, 'mostrarSeccion'])
         ->where('carpeta', 'html|css|js|php')
         ->name('seccion.detalle');
+
+
+    Route::post('/completar-seccion', [LearnController::class, 'completarSeccion'])->name('completar.seccion');
 });
 
 Route::middleware('guest')->group(function () {

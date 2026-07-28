@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise_user', function (Blueprint $table) {
+        Schema::create('unit_user', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->constrained()->onDelete('cascade');
-                $table->foreignId('exercise_id')->constrained()->onDelete('cascade');
-                $table->boolean('completed')->default(false);
-                $table->timestamp('completed_at')->nullable();
+                $table->foreignId('unit_id')->constrained()->onDelete('cascade');
+                $table->unsignedTinyInteger('percentage')->default(0);
                 $table->timestamps();
 
-                $table->unique(['user_id', 'exercise_id']);
+                $table->unique(['user_id', 'unit_id']);
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise_user');
+        Schema::dropIfExists('unit_user');
     }
 };
