@@ -27,6 +27,14 @@
 
                 <li class="menu-title mt-4">Perfil</li>
 
+                <li class="menu-item-modulo" data-titulo="introduccion">
+                    <a href="{{ route('dashboard') }}"
+                        class="{{ request()->routeIs('dashboard') ? 'active font-semibold' : '' }}">
+                        <span
+                            class="{{ request()->routeIs('dashboard') ? 'inline-block w-[2px] h-5 bg-primary rounded-full' : '' }}"></span>
+                        Progreso General
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
