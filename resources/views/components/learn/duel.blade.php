@@ -116,6 +116,11 @@
                             done.add(seccion);
                             localStorage.setItem(progressKey, JSON.stringify([...done]));
                             if (window.learnGame) window.learnGame.addXp(50);
+
+                            el.dispatchEvent(new CustomEvent('duelWon', {
+                                detail : { seccion: seccion, carpeta: carpeta }
+                            }));
+
                         }
 
                         body.innerHTML = `

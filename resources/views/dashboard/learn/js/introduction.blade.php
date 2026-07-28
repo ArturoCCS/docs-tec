@@ -14,8 +14,17 @@
         <div class="divider"></div>
 
         <div class="prose max-w-none bg-base-200/50 p-6 lg:p-8 rounded-2xl shadow-sm">
-            <p>Bienvenido al curso de HTML. Aquí aprenderás los conceptos fundamentales para estructurar páginas web
-                modernas...</p>
+            <p>Bienvenido al módulo de JavaScript. A lo largo de este recorrido, dominarás los fundamentos del lenguaje que da vida a la web.</p>
+            <p>En este curso aprenderás:</p>
+            <ul>
+                <li><strong>Variables y constantes</strong> – var, let y const, alcance y hoisting.</li>
+                <li><strong>Operadores aritméticos</strong> – suma, resta, multiplicación, módulo y exponente.</li>
+                <li><strong>Condicionales</strong> – if, else, operador ternario y switch.</li>
+                <li><strong>Bucles</strong> – for, while y do while.</li>
+                <li><strong>Funciones</strong> – declaración, expresión y arrow functions.</li>
+                <li><strong>Manipulación del DOM</strong> – document.write y getElementById.</li>
+            </ul>
+            <p>Cada lección incluye ejemplos prácticos y un cuestionario final para poner a prueba tus conocimientos. Supera todas las pruebas y conviértete en un experto de JavaScript. ¡Comienza la aventura!</p>
         </div>
 
     </div>
