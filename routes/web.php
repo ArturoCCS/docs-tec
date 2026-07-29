@@ -29,11 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [SessionsController::class, 'destroy']);
 
-    Route::get('/dashboard', function () {
-        return view('dashboard.index', [
-            'user' => Auth::user()
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [LearnController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/{carpeta}/{id}', [LearnController::class, 'mostrarSeccion'])
         ->where('carpeta', 'html|css|js|php')

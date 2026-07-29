@@ -9,7 +9,51 @@ use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class LearnController extends Controller
-{
+{   
+
+    public function dashboard() {
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['error' => 'No autenticado'], 401);
+        }
+        $units = Unit::orderBy('order')->with(['users' => function ($q) use ($user) {
+            $q->where('user_id', $user->id);
+        }])->get();
+        $unitsData = $units->map(function ($unit) use ($user){
+            $pivot = $unit->users->first()?->pivot;
+
+            $progress   = $pivot->percentage ?? 0;
+            $updatedAt  = $pivot->updated_at ?? null;
+
+                $carpetaMap = [
+                    'HTML' => 'html',
+                    'CSS'  => 'css',
+                    'JS' => 'js',
+                    'PHP'  => 'php',
+                ];
+            return [
+                'id'        => $unit->id,
+                'name'      => $unit->title,
+                'order'     => $unit->order,
+                'progress'  => $progress,
+                'carpeta'    => $carpetaMap[$unit->title] ?? 'null',
+                'updated_at' => $updatedAt
+            ];
+        });
+        $cursosActivos = $unitsData->filter(function ($unit) {
+            return $unit['progress'] > 0 && $unit['progress'] < 100;
+        })->count();
+        $ultimaLeccion = $unitsData->pluck('updated_at')->filter()->max();
+
+
+        return view('dashboard.index', [
+            'user'  => $user,
+            'units' => $unitsData,
+            'activeCourses' => $cursosActivos,
+            'lastLesson' => $ultimaLeccion
+        ]);
+    }
+
     private function obtenerSecciones(string $carpeta)
     {
         $path = public_path("data/{$carpeta}_secciones.json");
