@@ -165,7 +165,18 @@ class LearnController extends Controller
 
         //UNIDAD 1
         if($carpeta == "html"){
-            
+
+            $completed = self::completedListHTML();
+            if (array_key_exists($seccionId, $completed)) {
+                $should = self::completedHTML($seccionId);
+                
+                $unit = Unit::where('order', 1)->first();
+                if (!$unit) { abort(404, 'Unidad no encontrada :('); }
+                $percentage = $user->units()->where('unit_id', $unit->id)->first()?->pivot->percentage ?? 0;
+                if ($percentage < $should) {
+                    $user->units()->updateExistingPivot($unit->id, ['percentage' => $should]);
+                }
+            }
         }else if($carpeta == 'css'){
 
 
@@ -220,6 +231,14 @@ class LearnController extends Controller
     }
 
 
+    public static function requiredHTML($seccion){
+        $requirements = self::requiredListHTML();
+        return $requirements[$seccion] ?? 0;
+    }
+    public static function completedHTML($seccion){
+        $completed = self::completedListHTML();
+        return $completed[$seccion] ?? 0;
+    }
     public static function requiredJS($seccion){
         $requirements = self::requiredListJS();
         return $requirements[$seccion] ?? 0;
@@ -236,48 +255,63 @@ class LearnController extends Controller
         $completed = self::completedListPHP();
         return $completed[$seccion] ?? 0;
     }
+
+    public static function requiredListHTML() {
+        return [
+            'estructura'    => 0,
+            'texto'         => 10,
+            'semantica'     => 20,
+            'enlaces'       => 30,
+            'listas'        => 40,
+            'tablas'        => 50,
+            'formularios'   => 60,
+            'citas'         => 70,
+            'interactivos'  => 80,
+            'generales'     => 90
+        ];
+    }
+    public static function completedListHTML() {
+        return [
+            'estructura'    => 10,
+            'texto'         => 20,
+            'semantica'     => 30,
+            'enlaces'       => 40,
+            'listas'        => 50,
+            'tablas'        => 60,
+            'formularios'   => 70,
+            'citas'         => 80,
+            'interactivos'  => 90,
+            'generales'     => 100
+        ];
+    }
     public static function requiredListJS() {
         return [
             'u3-varcons'    => 0,
             'u3-aritmetica' => 10,
-            'u3-ifelse'     => 20,
-            'u3-ternario'   => 30,
-            'u3-switch'     => 40,
-            'u3-loops'      => 50,
-            'u3-funciones'  => 60,
-            'u3-document'   => 70
+            'u3-ifelse'     => 30,
+            'u3-ternario'   => 40,
+            'u3-switch'     => 50,
+            'u3-loops'      => 70,
+            'u3-funciones'  => 80,
+            'u3-document'   => 90
         ];
     }
     public static function completedListJS(){
         return [
             'u3-varcons'    => 10,
-            'u3-aritmetica' => 20,
-            'u3-ifelse'     => 30,
-            'u3-ternario'   => 40,
-            'u3-switch'     => 50,
-            'u3-loops'      => 60,
-            'u3-funciones'  => 70,
-            'u3-document'   => 80
+            'u3-aritmetica' => 30,
+            'u3-ifelse'     => 40,
+            'u3-ternario'   => 50,
+            'u3-switch'     => 70,
+            'u3-loops'      => 80,
+            'u3-funciones'  => 90,
+            'u3-document'   => 100
         ];
     }
 
     public static function requiredListPHP() {
         return [
             'sintaxis'              => 0,
-            'variables'             => 5,
-            'salida-datos'          => 10,
-            'condicionales'         => 20,
-            'operadores-comparacion'=> 30,
-            'operadores-logicos'    => 40,
-            'switch'                => 50,
-            'bucles'                => 60,
-            'funciones'             => 70,
-            'formularios'           => 80
-        ];
-    }
-    public static function completedListPHP() {
-        return [
-            'sintaxis'              => 5,
             'variables'             => 10,
             'salida-datos'          => 20,
             'condicionales'         => 30,
@@ -287,6 +321,20 @@ class LearnController extends Controller
             'bucles'                => 70,
             'funciones'             => 80,
             'formularios'           => 90
+        ];
+    }
+    public static function completedListPHP() {
+        return [
+            'sintaxis'              => 10,
+            'variables'             => 20,
+            'salida-datos'          => 30,
+            'condicionales'         => 40,
+            'operadores-comparacion'=> 50,
+            'operadores-logicos'    => 60,
+            'switch'                => 70,
+            'bucles'                => 80,
+            'funciones'             => 90,
+            'formularios'           => 100
         ];
     }
 

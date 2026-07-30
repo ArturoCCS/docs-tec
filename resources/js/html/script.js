@@ -1,5 +1,6 @@
 const secciones = [
-    {
+    {   
+        id: "estructura",
         nombre: "Estructura principal",
         descripcion: "Etiquetas fundamentales para crear la estructura de cualquier documento HTML.",
         etiquetas: [
@@ -14,7 +15,8 @@ const secciones = [
             ["base", "Dirección base", "Define la dirección base utilizada por los enlaces relativos.", "Vacía", '<base href="/">']
         ]
     },
-    {
+    {   
+        id: "texto",
         nombre: "Texto y títulos",
         descripcion: "Etiquetas para encabezados, párrafos y formato del texto.",
         etiquetas: [
@@ -42,7 +44,8 @@ const secciones = [
             ["hr", "Separación temática", "Crea una separación entre temas.", "Vacía", '<p>Tema uno</p><hr><p>Tema dos</p>']
         ]
     },
-    {
+    {   
+        id: "semantica",
         nombre: "Contenido semántico",
         descripcion: "Etiquetas que indican claramente la función de cada parte de una página.",
         etiquetas: [
@@ -61,7 +64,8 @@ const secciones = [
             ["summary", "Título desplegable", "Define el título visible de details.", "Interactiva", '<details><summary>Presiona aquí</summary></details>']
         ]
     },
-    {
+    {   
+        id: "enlaces",
         nombre: "Enlaces y multimedia",
         descripcion: "Etiquetas para enlaces, imágenes, audio, video y contenido externo.",
         etiquetas: [
@@ -77,7 +81,8 @@ const secciones = [
             ["area", "Área de imagen", "Define una zona seleccionable.", "Vacía", '<area shape="rect" coords="0,0,100,100" href="#">']
         ]
     },
-    {
+    {   
+        id: "listas",
         nombre: "Listas",
         descripcion: "Etiquetas para crear listas ordenadas, desordenadas y de definiciones.",
         etiquetas: [
@@ -90,7 +95,8 @@ const secciones = [
             ["menu", "Menú", "Representa una lista de opciones.", "Lista", '<menu><li><button>Guardar</button></li></menu>']
         ]
     },
-    {
+    {   
+        id: "tablas",
         nombre: "Tablas",
         descripcion: "Etiquetas para organizar datos en filas y columnas.",
         etiquetas: [
@@ -106,7 +112,8 @@ const secciones = [
             ["col", "Columna", "Define propiedades de una columna.", "Vacía", '<table><colgroup><col style="background:#eee"></colgroup></table>']
         ]
     },
-    {
+    {   
+        id: "formularios",
         nombre: "Formularios",
         descripcion: "Controles para capturar información del usuario.",
         etiquetas: [
@@ -126,7 +133,8 @@ const secciones = [
             ["meter", "Medición", "Muestra un valor dentro de un rango.", "Formulario", '<meter value="80" min="0" max="100"></meter>']
         ]
     },
-    {
+    {   
+        id: "citas",
         nombre: "Texto técnico y citas",
         descripcion: "Etiquetas para código, variables, teclas y citas.",
         etiquetas: [
@@ -146,6 +154,7 @@ const secciones = [
         ]
     },
     {
+        id: "interactivos",
         nombre: "Elementos interactivos",
         descripcion: "Elementos dinámicos, gráficos y componentes.",
         etiquetas: [
@@ -157,7 +166,8 @@ const secciones = [
             ["template", "Plantilla", "Guarda contenido reutilizable oculto.", "Interactiva", '<template><p>Contenido de plantilla</p></template>']
         ]
     },
-    {
+    {   
+        id: "generales",
         nombre: "Elementos generales",
         descripcion: "Contenedores y elementos de apoyo.",
         etiquetas: [
@@ -169,6 +179,38 @@ const secciones = [
         ]
     }
 ];
+
+
+const requisitos = {
+    'estructura': 0,
+    'texto': 10,
+    'semantica': 20,
+    'enlaces': 30,
+    'listas': 40,
+    'tablas': 50,
+    'formularios': 60,
+    'citas': 70,
+    'interactivos': 80,
+    'generales': 90
+};
+
+const completados = {
+    'estructura': 10,
+    'texto': 20,
+    'semantica': 30,
+    'enlaces': 40,
+    'listas': 50,
+    'tablas': 60,
+    'formularios': 70,
+    'citas': 80,
+    'interactivos': 90,
+    'generales': 100
+};
+
+function seccionDesbloqueada(idSeccion) {
+    const req = requisitos[idSeccion] || 0;
+    return window.progresoUsuario >= req;
+}
 
 const navegacion = document.getElementById("navegacion-secciones");
 const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
@@ -187,23 +229,38 @@ function escaparHTML(texto) {
 }
 
 function crearMenu() {
+    console.log('Actualizando menú con progreso:', progresoUsuario);
     navegacion.innerHTML = "";
 
     secciones.forEach((seccion, indice) => {
         const boton = document.createElement("button");
         boton.className = "boton-seccion";
         boton.dataset.indice = indice;
+
+        const desbloqueada = seccionDesbloqueada(seccion.id);
+        if (!desbloqueada) {
+            boton.classList.add('bloqueado');
+            boton.style.opacity = '0.5';
+            boton.style.pointerEvents = 'none';
+        } else {
+            boton.classList.remove('bloqueado');
+            boton.style.opacity = '1';
+            boton.style.pointerEvents = 'auto';
+        }
+
         boton.innerHTML = `
             <span>${seccion.nombre}</span>
             <span class="contador-seccion">${seccion.etiquetas.length}</span>
         `;
 
         boton.addEventListener("click", () => {
-            indiceActivo = indice;
-            buscador.value = "";
-            mostrarSeccion(indice);
-            actualizarEstadoPractica();
-            document.body.classList.remove("menu-abierto");
+            if (desbloqueada) {
+                indiceActivo = indice;
+                buscador.value = "";
+                mostrarSeccion(indice);
+                actualizarEstadoPractica();
+                document.body.classList.remove("menu-abierto");
+            }
         });
 
         navegacion.appendChild(boton);
@@ -291,6 +348,8 @@ function normalizarTexto(texto) {
         .replace(/\s+/g, " ")
         .trim();
 }
+
+
 
 function calcularPuntajeBusqueda(etiqueta, consulta) {
     const nombre = normalizarTexto(etiqueta[0]);
@@ -424,7 +483,7 @@ const bancoPreguntas = [
     [
         ["¿Qué etiqueta contiene todo el documento HTML?", ["<body>", "<html>", "<main>", "<head>"], 1, "La etiqueta <html> es el elemento raíz del documento."],
         ["¿Qué etiqueta contiene el contenido visible de la página?", ["<head>", "<meta>", "<body>", "<title>"], 2, "El contenido visible se coloca dentro de <body>."],
-        ["¿Dónde se coloca normalmente la etiqueta <title>?", ["Dentro de <body>", "Dentro de <head>", "Dentro de <footer>", "Fuera de <html>"], 1, "<title> debe colocarse dentro de <head>."],
+        ["¿Dónde se coloca normalmente la etiqueta title?", ["Dentro de <body>", "Dentro de <head>", "Dentro de <footer>", "Fuera de <html>"], 1, "<title> debe colocarse dentro de <head>."],
         ["¿Qué etiqueta enlaza un archivo CSS externo?", ["<style>", "<script>", "<link>", "<meta>"], 2, "<link rel='stylesheet'> enlaza una hoja CSS."],
         ["¿Qué etiqueta define la codificación UTF-8?", ["<meta>", "<base>", "<body>", "<html>"], 0, "<meta charset='UTF-8'> define la codificación."],
         ["¿Qué etiqueta enlaza un archivo JavaScript?", ["<code>", "<script>", "<link>", "<js>"], 1, "<script src='...'> enlaza JavaScript."],
@@ -672,9 +731,7 @@ formularioPractica.addEventListener("submit", event => {
     let aciertos = 0;
 
     bloques.forEach((bloque, indice) => {
-        const seleccionada = bloque.querySelector(
-            `input[name="pregunta-${indice}"]:checked`
-        );
+        const seleccionada = bloque.querySelector(`input[name="pregunta-${indice}"]:checked`);
         const correcta = Number(bloque.dataset.respuestaCorrecta);
 
         bloque.classList.remove("correcta", "incorrecta");
@@ -711,6 +768,38 @@ formularioPractica.addEventListener("submit", event => {
 
     resultadoPractica.classList.remove("oculto");
     resultadoPractica.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    if (aciertos >= 8) {
+        const seccionId = secciones[indiceActivo].id;
+        const carpeta = 'html';
+
+        fetch(completarUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify({
+                carpeta: carpeta,
+                seccion_id: seccionId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                // Actualizar progreso local con el valor de "completados"
+                const nuevo = completados[seccionId] || 0;
+                window.progresoUsuario = nuevo;
+                crearMenu();
+                console.log('Progreso guardado:', data);
+            } else {
+                console.error('Error al guardar progreso:', data.error || 'Error desconocido');
+            }
+        })
+        .catch(error => {
+            console.error('Error de red:', error);
+        });
+    }
 });
 
 function reiniciarPracticaActual() {

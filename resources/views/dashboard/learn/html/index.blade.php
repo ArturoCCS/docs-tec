@@ -1,6 +1,12 @@
+    <script>
+        window.progresoUsuario = {{ $porcentaje ?? 0 }};
+        window.csrfToken = '{{ csrf_token() }}';
+        window.completarUrl = '{{ route("completar.seccion") }}';
+    </script>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso HTML</title>
