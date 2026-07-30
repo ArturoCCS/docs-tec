@@ -1,16 +1,65 @@
 {
-    "formularios": {
-        "titulo": "Formularios Avanzados y Validaciones",
-        "mensaje": "Descubre cómo capturar datos con inputs modernos y atributos HTML5.",
-        "badge": "Intermedio",
-        "icono": "📝",
-        "contenido": "<h2>Creación de Formularios</h2><p>Los formularios son esenciales para interactuar con los usuarios. Aquí aprenderás a usar etiquetas como <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, y validaciones nativas de HTML5.</p>"
+    "selectores": {
+        "titulo": "Selectores",
+        "mensaje": "Aprende a apuntar exactamente al elemento que quieres estilizar.",
+        "badge": "Básico",
+        "icono": "🎯",
+        "contenido": "<h2>Selectores en CSS</h2><p>Antes de darle estilo a algo, necesitas <strong>seleccionarlo</strong>. Los selectores son la forma en que CSS \"encuentra\" los elementos HTML a los que quieres aplicar reglas.</p><p>Los más comunes son el <strong>selector de clase</strong> (<code>.mi-clase</code>) y el <strong>selector de ID</strong> (<code>#mi-id</code>). Una clase puede repetirse en varios elementos; un ID debe ser único en toda la página.</p><h3> Ejemplo</h3><pre><code>.tarjeta {\n  background-color: white;\n}\n\n#encabezado {\n  font-size: 24px;\n}</code></pre>"
     },
-    "multimedia": {
-        "titulo": "Multimedia, Audio y Video",
-        "mensaje": "Inserta elementos multimedia nativos optimizados para la web.",
+    "fuente": {
+        "titulo": "Fuente",
+        "mensaje": "Controla cómo se ve el texto: tipografía, color, tamaño y alineación.",
+        "badge": "Básico",
+        "icono": "🔤",
+        "contenido": "<h2>Estilos de Fuente</h2><p>El texto es el contenido más común en cualquier página, y CSS te da control total sobre su apariencia: tipografía, color, tamaño y alineación.</p><h3>Ejemplo</h3><pre><code>p {\n  font-family: Arial, sans-serif;\n  color: #333333;\n  font-size: 16px;\n  text-align: center;\n}</code></pre>"
+    },
+    "fondo": {
+        "titulo": "Fondo",
+        "mensaje": "Dale color, imagen y textura al fondo de cualquier elemento.",
+        "badge": "Básico",
+        "icono": "🖌️",
+        "contenido": "<h2>Fondos en CSS</h2><p>El fondo (<code>background</code>) de un elemento puede ser un color sólido, una imagen, o ambos combinados.</p><h3> Ejemplo</h3><pre><code>.banner {\n  background-color: #4a90d9;\n  background-image: url('fondo.jpg');\n  background-size: cover;\n  background-repeat: no-repeat;\n}</code></pre>"
+    },
+    "dimensiones": {
+        "titulo": "Dimensiones",
+        "mensaje": "Define el ancho y alto de cualquier elemento en tu página.",
+        "badge": "Básico",
+        "icono": "📐",
+        "contenido": "<h2>Dimensiones: width y height</h2><p>Cada elemento ocupa un espacio, y tú puedes controlarlo con <code>width</code> (ancho) y <code>height</code> (alto), usando píxeles, porcentajes u otras unidades.</p><h3>Ejemplo</h3><pre><code>.caja {\n  width: 200px;\n  height: 100px;\n}\n\n.contenedor-completo {\n  width: 100%;\n}</code></pre>"
+    },
+    "bordes": {
+        "titulo": "Bordes",
+        "mensaje": "Agrega contornos y esquinas redondeadas a tus elementos.",
+        "badge": "Intermedio",
+        "icono": "🔲",
+        "contenido": "<h2>Bordes en CSS</h2><p>La propiedad <code>border</code> dibuja un contorno alrededor de un elemento. Con <code>border-radius</code> puedes redondear sus esquinas, desde un ligero suavizado hasta un círculo perfecto.</p><h3> Ejemplo</h3><pre><code>.tarjeta {\n  border: 2px solid black;\n  border-radius: 12px;\n}\n\n.avatar {\n  border-radius: 50%;\n}</code></pre>"
+    },
+    "espaciado": {
+        "titulo": "Espaciado",
+        "mensaje": "Domina el modelo de caja: el espacio dentro y fuera de cada elemento.",
+        "badge": "Intermedio",
+        "icono": "📦",
+        "contenido": "<h2>Espaciado: padding y margin</h2><p>Todo elemento es, en el fondo, una caja. El <strong>padding</strong> es el espacio interno entre el contenido y el borde; el <strong>margin</strong> es el espacio externo entre esa caja y sus vecinos.</p><h3> Ejemplo</h3><pre><code>.tarjeta {\n  padding: 16px;\n  margin: 24px;\n}</code></pre>"
+    },
+    "transformaciones": {
+        "titulo": "Transformaciones",
+        "mensaje": "Mueve, rota, escala e inclina elementos sin afectar el resto del diseño.",
         "badge": "Avanzado",
-        "icono": "🖼️",
-        "contenido": "<h2>Elementos Multimedia</h2><p>HTML5 permite insertar contenido multimedia de forma nativa utilizando las etiquetas <code>&lt;audio&gt;</code> y <code>&lt;video&gt;</code> sin necesidad de plugins externos.</p>"
+        "icono": "🔄",
+        "contenido": "<h2>Transformaciones en CSS</h2><p>La propiedad <code>transform</code> modifica visualmente un elemento sin alterar el flujo del documento: moverlo, rotarlo, escalarlo o inclinarlo.</p><h3> Ejemplo</h3><pre><code>.imagen {\n  transform: rotate(15deg) scale(1.1);\n}</code></pre>"
+    },
+    "pseudoclases": {
+        "titulo": "Pseudoclases",
+        "mensaje": "Cambia el estilo según el estado de un elemento: al pasar el mouse, al hacer clic, y más.",
+        "badge": "Avanzado",
+        "icono": "✨",
+        "contenido": "<h2>Pseudoclases</h2><p>Las pseudoclases aplican estilos según el <strong>estado</strong> de un elemento, sin necesidad de JavaScript: <code>:hover</code>, <code>:active</code>, <code>:focus</code>, <code>:checked</code>.</p><h3> Ejemplo</h3><pre><code>.boton:hover {\n  background-color: #333333;\n  color: white;\n}</code></pre>"
+    },
+    "practica": {
+        "titulo": "Práctica Final",
+        "mensaje": "Pon a prueba todo lo que aprendiste en un quiz de opción múltiple.",
+        "badge": "Evaluación",
+        "icono": "🏆",
+        "contenido": "<p>Responde las preguntas para reforzar lo aprendido en todos los módulos.</p>"
     }
 }

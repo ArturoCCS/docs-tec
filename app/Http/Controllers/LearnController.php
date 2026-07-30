@@ -88,7 +88,34 @@ class LearnController extends Controller
             $percentage = $pivot ? $pivot->pivot->percentage : 0;
         }
 
+
         if ($id === 'index') {
+            switch($carpeta){
+            case "html":
+                foreach ($secciones as $clave => $datos) {
+                    $secciones[$clave]['required'] = self::requiredHTML($clave);
+                }
+                break;
+            case "css":
+                foreach ($secciones as $clave => $datos) {
+                    $secciones[$clave]['required'] = self::requiredCSS($clave);
+                }
+                break;
+            case "js":
+                foreach ($secciones as $clave => $datos) {
+                    $secciones[$clave]['required'] = self::requiredJS($clave);
+                }
+                break;
+            case "php":
+                foreach ($secciones as $clave => $datos) {
+                    $secciones[$clave]['required'] = self::requiredPHP($clave);
+                }
+                break;
+            default:
+            
+            } 
+
+
             return view("dashboard.learn.{$carpeta}.index", [
                 'carpeta'   => $carpeta,
                 'idActual'  => $id,
@@ -107,9 +134,21 @@ class LearnController extends Controller
         
         //UNIDAD 1
         if($carpeta == "html"){
-            
+            //NO HAY ID PAGES
         }else if($carpeta == 'css'){
+            $requirements = self::requiredListCSS();
+            if(array_key_exists($id, $requirements)){
+                $needed = $requirements[$id];
+                if(!$unit) { abort(404, 'Unidad no encontrada :('); }
+                if($percentage < $needed) {
 
+                    return view("dashboard.learn.{$carpeta}.introduction", [
+                        'carpeta'   => $carpeta,
+                        'idActual'  => 'introduction',
+                        'secciones' => $secciones
+                    ]);
+                }
+            }
 
         }else if($carpeta == 'js'){
             $requirements = self::requiredListJS();
@@ -179,6 +218,20 @@ class LearnController extends Controller
             }
         }else if($carpeta == 'css'){
 
+            $completed = self::completedListCSS();
+            if(array_key_exists($seccionId, $completed)){
+                $should = self::completedCSS($seccionId);
+
+                $unit = Unit::where('order', 2)->first();
+                if(!$unit) { abort(404, 'Unidad no encontrada :('); }
+
+                $percentage = $user->units()->where('unit_id', $unit->id)->first()?->pivot->percentage ?? 0;
+                if($percentage < $should) {
+                    $user->units()->updateExistingPivot($unit->id, [
+                        'percentage' => $should
+                    ]);
+                }
+            }
 
         }else if($carpeta == 'js'){
 
@@ -239,6 +292,14 @@ class LearnController extends Controller
         $completed = self::completedListHTML();
         return $completed[$seccion] ?? 0;
     }
+    public static function requiredCSS($seccion){
+        $requirements = self::requiredListCSS();
+        return $requirements[$seccion] ?? 0;
+    }
+    public static function completedCSS($seccion){
+        $completed = self::completedListCSS();
+        return $completed[$seccion] ?? 0;
+    }
     public static function requiredJS($seccion){
         $requirements = self::requiredListJS();
         return $requirements[$seccion] ?? 0;
@@ -255,6 +316,7 @@ class LearnController extends Controller
         $completed = self::completedListPHP();
         return $completed[$seccion] ?? 0;
     }
+
 
     public static function requiredListHTML() {
         return [
@@ -284,6 +346,35 @@ class LearnController extends Controller
             'generales'     => 100
         ];
     }
+
+    public static function requiredListCSS() {
+        return [
+            'selectores'        => 0,
+            'fuente'            => 10,
+            'fondo'             => 20,
+            'dimensiones'       => 30,
+            'bordes'            => 40,
+            'espaciado'         => 50,
+            'transformaciones'  => 60,
+            'pseudoclases'      => 70,
+            'practica'          => 80
+        ];
+    }
+
+    public static function completedListCSS() {
+        return [
+            'selectores'        => 10,
+            'fuente'            => 20,
+            'fondo'             => 30,
+            'dimensiones'       => 40,
+            'bordes'            => 50,
+            'espaciado'         => 60,
+            'transformaciones'  => 70,
+            'pseudoclases'      => 80,
+            'practica'          => 100
+        ];
+    }
+
     public static function requiredListJS() {
         return [
             'u3-varcons'    => 0,
