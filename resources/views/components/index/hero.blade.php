@@ -21,7 +21,7 @@
 
             <div class="initial">
                 <div class="thumbnail w-16 lg:w-24 mx-auto lg:mx-0" data-flip-id="img">
-                    {!! file_get_contents(asset('svg/blocky.svg')) !!}
+                    {!! file_get_contents(public_path('svg/blocky.svg')) !!}
                 </div>
             </div>
         </div>

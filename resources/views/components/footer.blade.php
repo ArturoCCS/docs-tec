@@ -8,39 +8,39 @@
         <div class="absolute inset-0 pointer-events-none z-20 overflow-visible">
 
             <div class="absolute transform blocky-item opacity-0 w-10 lg:w-30 ">
-                {!! file_get_contents(asset('svg/blocky.svg')) !!}
+                {!! file_get_contents(public_path('svg/blocky.svg')) !!}
             </div>
 
             <div class="absolute bottom-[30%] right-[2%] lg:right-[6%] w-20 lg:w-44 transform -rotate-5 blocky-item">
-                {!! file_get_contents(asset('svg/php.svg')) !!}
+                {!! file_get_contents(public_path('svg/php.svg')) !!}
             </div>
 
             <div class="absolute bottom-[30%] left-[2%] lg:left-[6%] w-18 lg:w-44 transform rotate-5 blocky-item">
-                 {!! file_get_contents(asset('svg/js.svg')) !!}
+                 {!! file_get_contents(public_path('svg/js.svg')) !!}
             </div>
 
             <div class="absolute bottom-[15%] left-[2%] lg:left-[2%] w-14 lg:w-38 transform -rotate-12 blocky-item">
                
 
-                {!! file_get_contents(asset('svg/html.svg')) !!}
+                {!! file_get_contents(public_path('svg/html.svg')) !!}
             </div>
 
             <div class="absolute bottom-[15%] right-[2%] lg:right-[2%] w-16 lg:w-38 transform rotate-12 blocky-item ">
-                {!! file_get_contents(asset('svg/css.svg')) !!}
+                {!! file_get_contents(public_path('svg/css.svg')) !!}
             </div>
 
 
             <div class="absolute bottom-[5%] left-[5%] lg:left-[10%] w-10 lg:w-30 transform rotate-5 blocky-item">
-                 {!! file_get_contents(asset('svg/juega.svg')) !!}
+                 {!! file_get_contents(public_path('svg/juega.svg')) !!}
             </div>
 
             <div
                 class="absolute bottom-[5%] right-[5%] lg:right-[10%] w-10 lg:w-43 transform -rotate-5 blocky-item hidden sm:block">
-                {!! file_get_contents(asset('svg/aprende.svg')) !!}
+                {!! file_get_contents(public_path('svg/aprende.svg')) !!}
             </div>
 
             <div class="absolute bottom-[5%] left-[15%] lg:left-[36%] w-14 lg:w-50 transform opacity-0 rotate-6 blocky-item">
-                {!! file_get_contents(asset('svg/construye.svg')) !!}
+                {!! file_get_contents(public_path('svg/construye.svg')) !!}
             </div>
 
 
