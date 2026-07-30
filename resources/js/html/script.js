@@ -11,7 +11,7 @@ const secciones = [
             ["link", "Archivo externo", "Enlaza recursos externos como hojas de estilos CSS.", "Vacía", '<link rel="stylesheet" href="css/estilos.css">'],
             ["style", "Estilos internos", "Permite escribir reglas CSS directamente en el HTML.", "Contenedor", '<style>\n  p { color: purple; }\n</style>'],
             ["script", "Código JavaScript", "Inserta o enlaza archivos JavaScript.", "Contenedor", '<script src="js/script.js"></script>'],
-            ["base", "Dirección base", "Define la dirección base utilizada por los enlaces relativos.", "Vacía", '<base href="https://ejemplo.com/">']
+            ["base", "Dirección base", "Define la dirección base utilizada por los enlaces relativos.", "Vacía", '<base href="/">']
         ]
     },
     {

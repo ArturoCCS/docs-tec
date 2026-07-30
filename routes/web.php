@@ -15,6 +15,9 @@ Route::get('/{carpeta}', [LearnController::class, 'mostrarSeccion'])
     ->defaults('id', 'index')
     ->where('carpeta', 'html|css|js|php')
     ->name('curso.index');
+Route::get('/html/introduction', function () {
+    return redirect()->route('curso.index', ['carpeta' => 'html']);
+});
 
 Route::get('/{carpeta}/introduction', [LearnController::class, 'mostrarSeccion'])
     ->defaults('id', 'introduction')
