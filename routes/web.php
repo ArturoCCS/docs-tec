@@ -1,14 +1,11 @@
 <?php
-
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\SessionsController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\BlocklyController;
 use App\Http\Controllers\LearnController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-
 use Illuminate\Http\Request;
 
 Route::get('/{carpeta}', [LearnController::class, 'mostrarSeccion'])
@@ -24,34 +21,26 @@ Route::get('/{carpeta}/introduction', [LearnController::class, 'mostrarSeccion']
     ->where('carpeta', 'html|css|js|php')
     ->name('curso.intro');
 
-
 Route::get('/', [BlocklyController::class, 'hero']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/prueba', [BlocklyController::class, 'index']);
-
     Route::delete('/logout', [SessionsController::class, 'destroy']);
-
     Route::get('/dashboard', [LearnController::class, 'dashboard'])->name('dashboard');
-
     Route::get('/{carpeta}/{id}', [LearnController::class, 'mostrarSeccion'])
         ->where('carpeta', 'html|css|js|php')
         ->name('seccion.detalle');
-
-
     Route::post('/completar-seccion', [LearnController::class, 'completarSeccion'])->name('completar.seccion');
 });
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create']);
     Route::post('/register', [RegisteredUserController::class, 'store']);
-
     Route::get('/login', [SessionsController::class, 'create']);
     Route::post('/login', [SessionsController::class, 'store'])->name('login');
 });
 
 Route::get('/admin', function () {
     Gate::authorize('view-admin');
-
     return "Privado";
 });

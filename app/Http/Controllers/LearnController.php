@@ -69,21 +69,27 @@ class LearnController extends Controller
             abort(404, 'La sección no existe.');
         }
             */
-        
+
+        if ($carpeta === 'html') {
+            $id = 'index';
+        }
+
         $user = Auth::user();
         $percentage = 0;
-        
+
         if(!$user){
             //abort(404, 'Usuario no autenticado.');
-            return view("dashboard.learn.{$carpeta}.introduction", [
-            'carpeta'   => $carpeta,
-            'idActual'  => 'introduction',
-            'secciones' => $secciones
-            ]);
+            if ($carpeta !== 'html') {
+                return view("dashboard.learn.{$carpeta}.introduction", [
+                'carpeta'   => $carpeta,
+                'idActual'  => 'introduction',
+                'secciones' => $secciones
+                ]);
+            }
         }
 
         $unit = $this->getUnidadPorCarpeta($carpeta);
-        if($unit){
+        if($unit && $user){
             $pivot = $user->units()->where('unit_id', $unit->id)->first();
             $percentage = $pivot ? $pivot->pivot->percentage : 0;
         }
